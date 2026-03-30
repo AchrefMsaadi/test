@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Magnavox | Kinetic Noir Shop</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Manrope:wght@200;300;400;500;600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script>
+tailwind.config = {
+  darkMode:"class",
+  theme:{
+    extend:{
+      colors:{
+        "primary-fixed-dim":"#ffb4a8","primary-fixed":"#ffdad4","secondary-fixed":"#e5e2e1",
+        "surface-container-high":"#2a2a2a","on-tertiary":"#002388","secondary-container":"#474746",
+        "primary-container":"#be0000","on-surface":"#e5e2e1","surface-dim":"#131313",
+        "tertiary":"#b9c3ff","surface-container":"#201f1f","on-secondary-fixed":"#1c1b1b",
+        "on-secondary-container":"#b7b5b4","on-error":"#690005","background":"#131313",
+        "surface-tint":"#ffb4a8","outline-variant":"#5d3f3b","error-container":"#93000a",
+        "on-primary-fixed":"#410000","on-tertiary-fixed-variant":"#0034be","surface-variant":"#353534",
+        "inverse-primary":"#c00301","on-secondary":"#313030","error":"#ffb4ab","surface":"#131313",
+        "on-error-container":"#ffdad6","on-primary-container":"#ffcac2","on-secondary-fixed-variant":"#474746",
+        "secondary-fixed-dim":"#c8c6c5","outline":"#ad8882","on-primary-fixed-variant":"#930000",
+        "inverse-surface":"#e5e2e1","surface-bright":"#3a3939","surface-container-lowest":"#0e0e0e",
+        "secondary":"#c8c6c5","on-tertiary-container":"#ced4ff","on-background":"#e5e2e1",
+        "inverse-on-surface":"#313030","on-tertiary-fixed":"#001356","tertiary-container":"#0046f5",
+        "surface-container-low":"#1c1b1b","primary":"#ffb4a8","surface-container-highest":"#353534",
+        "on-surface-variant":"#e7bdb6","on-primary":"#690000"
+      },
+      fontFamily:{"headline":["Space Grotesk"],"body":["Manrope"],"label":["Manrope"]},
+      borderRadius:{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"}
+    }
+  }
+}
+</script>
+<style>
+  .material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24}
+  .kinetic-gradient{background:linear-gradient(135deg,#be0000 0%,#930000 100%)}
+  body{background-color:#131313;color:#e5e2e1;font-family:'Manrope',sans-serif}
+  
+  
+  
+  /* Cart sidebar */
+  #cart-sidebar {transition: transform 0.3s ease;}
+  #cart-sidebar.open {transform: translateX(0) !important;}
+  
+  /* Toast */
+  #toast {transition: opacity 0.3s ease, transform 0.3s ease;}
+</style>
+</head>
+<body class="bg-background text-on-surface selection:bg-primary selection:text-on-primary">
+
+<!-- Cart Sidebar Overlay -->
+<div id="cart-overlay" class="fixed inset-0 bg-black/60 z-40 hidden" onclick="closeCart()"></div>
+
+<!-- Cart Sidebar -->
+<div id="cart-sidebar" class="fixed top-0 right-0 h-full w-[380px] bg-[#1a1a1a] z-50 flex flex-col shadow-2xl" style="transform:translateX(100%)">
+  <div class="flex justify-between items-center p-6 border-b border-outline-variant/20">
+    <h2 class="font-headline font-bold text-xl tracking-tight">YOUR CART</h2>
+    <button onclick="closeCart()" class="text-on-surface-variant hover:text-on-surface transition-colors">
+      <span class="material-symbols-outlined">close</span>
+    </button>
+  </div>
+  <div id="cart-items" class="flex-1 overflow-y-auto p-6 space-y-4">
+    <p id="cart-empty" class="text-on-surface-variant text-center mt-8 font-body">Your cart is empty.</p>
+  </div>
+  <div class="p-6 border-t border-outline-variant/20">
+    <div class="flex justify-between mb-6">
+      <span class="font-headline font-bold">TOTAL</span>
+      <span id="cart-total" class="font-headline font-bold text-primary">$0.00</span>
+    </div>
+    <button class="kinetic-gradient w-full py-4 text-white font-headline font-bold tracking-widest uppercase rounded-xl hover:brightness-110 transition-all">CHECKOUT</button>
+  </div>
+</div>
+
+<!-- Toast notification -->
+<div id="toast" class="fixed bottom-6 right-6 z-50 bg-primary-container text-on-surface px-6 py-3 rounded-xl font-headline font-bold text-sm opacity-0 pointer-events-none translate-y-4">
+  ✓ Added to cart!
+</div>
+
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-30 bg-[#131313]/60 backdrop-blur-xl">
+  <div class="flex justify-between items-center px-10 py-4 w-full max-w-[1920px] mx-auto">
+    <div class="flex items-center gap-8">
+      <a href="index.html" class="flex items-center gap-2 group">
+        <img src="assets/logo.png" alt="Magnavox Logo" class="h-10 w-10 object-contain transition-all duration-300 group-hover:scale-110"/>
+        <span class="text-2xl font-black text-[#e5e2e1] uppercase italic font-headline tracking-tight">Magnavox</span>
+      </a>
+      <div class="hidden md:flex gap-6 font-headline font-bold tracking-tight">
+        <a class="text-[#e5e2e1]/70 hover:text-[#e5e2e1] transition-colors" href="index.html">Home</a>
+        <a class="text-[#e5e2e1]/70 hover:text-[#e5e2e1] transition-colors" href="events.html">Events</a>
+        <a class="text-[#ffb4a8] border-b-2 border-[#be0000] pb-1" href="shop.html">Shop</a>
+      </div>
+    </div>
+    <div class="flex items-center gap-6">
+      <button onclick="openCart()" class="relative text-[#e5e2e1]/70 hover:text-[#ffb4a8] transition-all scale-95 active:scale-90">
+        <span class="material-symbols-outlined">shopping_cart</span>
+        <span id="cart-count" class="absolute -top-2 -right-2 bg-primary-container text-on-surface text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center hidden">0</span>
+      </button>
+      <button class="material-symbols-outlined text-[#e5e2e1]/70 hover:text-[#ffb4a8] transition-all scale-95 active:scale-90">account_circle</button>
+      <button id="mobile-menu-btn" class="md:hidden text-[#e5e2e1]">
+        <span class="material-symbols-outlined">menu</span>
+      </button>
+    </div>
+  </div>
+  <div id="mobile-menu" class="hidden px-10 pb-4 flex-col gap-3 font-headline font-bold">
+    <a class="text-[#e5e2e1]" href="index.html">Home</a>
+    <a class="text-[#e5e2e1]" href="events.html">Events</a>
+    <a class="text-[#ffb4a8]" href="shop.html">Shop</a>
+  </div>
+</nav>
+
+<main class="pt-24 min-h-screen">
+  <!-- Hero -->
+  <section class="relative w-full h-[600px] md:h-[716px] flex items-center px-10 mb-20 overflow-hidden">
+    <div class="absolute inset-0 z-0">
+      <img alt="Premium Gaming Setup" class="w-full h-full object-cover opacity-40" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDRcKzTmoeHe95nj-yIOptJYHDgZu0Rzhcj6azWiCfh_h9yKHLwy12bVMw8iVzs9UORfOZjCxP3m0lhkQfEcINT4rYkh-KCnKf05uh1Vl234K6-qUPf4CFI8Tp5f8hFhGJYj8oLLYVpr_Vu6mu_GEWwBjULiuUrlTMuslzid0uCcsBHFP73XMFhrTuCpMRy-CYl0UxQAGruVZKANfNbms1TPOmqKCL4yvSAA44PQrrBxcv_cY1Yao24kS8GXMDLbFZJEYUCrVzD8DA"/>
+      <div class="absolute inset-0 bg-gradient-to-r from-background via-background/60 to-transparent"></div>
+    </div>
+    <div class="relative z-10 max-w-4xl">
+      <span class="font-headline text-primary tracking-[0.3em] uppercase text-sm mb-4 block">Limited Edition Drop</span>
+      <h1 class="font-headline text-7xl md:text-9xl font-bold text-on-surface leading-[0.9] tracking-tighter mb-8 italic">
+        GEAR UP FOR <br/> THE <span class="text-primary-container">NOIR</span>
+      </h1>
+      <p class="font-body text-xl text-on-surface-variant max-w-lg mb-10 leading-relaxed">
+        Engineered for the elite. The Kinetic Noir collection blends high-performance utility with an aggressive editorial aesthetic.
+      </p>
+      <button onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})" class="kinetic-gradient px-8 py-4 rounded-xl font-headline font-bold text-white hover:brightness-110 transition-all scale-95 active:scale-90">
+        EXPLORE COLLECTION
+      </button>
+    </div>
+  </section>
+
+  <!-- Category Filters -->
+  <section class="px-10 mb-16">
+    <div class="flex flex-wrap gap-8 border-b border-outline-variant/20 pb-6 items-center">
+      <button onclick="filterProducts('all')" class="shop-filter active-shop-filter font-headline text-lg font-bold text-primary tracking-widest border-b-2 border-primary pb-6 -mb-[26px]" data-shopfilter="all">ALL</button>
+      <button onclick="filterProducts('merch')" class="shop-filter font-headline text-lg font-bold text-on-surface-variant/50 hover:text-on-surface tracking-widest transition-colors" data-shopfilter="merch">MERCH</button>
+      <button onclick="filterProducts('equipment')" class="shop-filter font-headline text-lg font-bold text-on-surface-variant/50 hover:text-on-surface tracking-widest transition-colors" data-shopfilter="equipment">EQUIPMENT</button>
+      <button onclick="filterProducts('clothes')" class="shop-filter font-headline text-lg font-bold text-on-surface-variant/50 hover:text-on-surface tracking-widest transition-colors" data-shopfilter="clothes">CLOTHES</button>
+    </div>
+  </section>
+
+  <!-- Product Grid -->
+  <section id="products" class="px-10 mb-32">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+
+      <!-- Product 1 -->
+      <div class="product-card group relative bg-surface-container-high rounded-xl overflow-hidden flex flex-col transition-all duration-500 hover:-translate-y-2" data-product="clothes" data-name="Magnavox Stealth Hoodie" data-price="120">
+        <div class="aspect-[4/5] overflow-hidden bg-surface-container-lowest relative">
+          <img alt="Magnavox Stealth Hoodie" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCCrF2ga4--mBjaXObFOliBtLXCJB-PPoWXUafU4rvGpnvIixwUZH05aZ_Yfpr7BpHuBzJKTnPpjRultLok3rZyKFZGWS1sCKwB7Zguv36GIEOnm21qgiWWmhl1l9Ah1I-zE0ZrAAdIh3AKsI3A0QtR9vCCaDCm0MiABxxlgJc2BAr8HO5ur_0kgaYK_07jJsV3Qvi4Pq9YgBXtMYRbT1sKcS3GhMY8nrgv-uVbNV9aTP4362Gk5gjEYh95pGFKtt9kTQi5voRVZ28"/>
+          <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center p-6">
+            <button onclick="addToCart('Magnavox Stealth Hoodie', 120)" class="w-full kinetic-gradient py-4 rounded-xl font-headline font-bold text-white transition-transform translate-y-4 group-hover:translate-y-0">ADD TO CART</button>
+          </div>
+        </div>
+        <div class="p-6">
+          <span class="font-body text-xs text-primary font-bold uppercase tracking-widest mb-2 block">Clothes</span>
+          <h3 class="font-headline text-xl font-bold mb-2">Magnavox Stealth Hoodie</h3>
+          <p class="font-headline text-2xl font-light text-on-surface">$120.00</p>
+        </div>
+      </div>
+
+      <!-- Product 2 -->
+      <div class="product-card group relative bg-surface-container-high rounded-xl overflow-hidden flex flex-col transition-all duration-500 hover:-translate-y-2" data-product="equipment" data-name="Vortex Pro Controller" data-price="185">
+        <div class="aspect-[4/5] overflow-hidden bg-surface-container-lowest relative">
+          <img alt="Vortex Pro Controller" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAvNlRm_8-2GawVMYq9HdNtPeUexzsGZ3yBb15pIaa8-jp9hS1U_ZTseSP8UreV5zfxKacimRnPukC2Y7QG5m7wCbmqkk6tJfmh4A35pdzIRVUWZ2K_bQ5CxTY6KLcr1YyIrvu2LiIYvC4chAG29wwtv3zng-Fj15drSq7Yhbc9D_iAcj9KcHYCSlldZKJJdIYyLCbG5YRcAie_N7su_srHW1yVHPThcAaM6fFTriI3Zgmrz1tpCasJE5Rqd6PjKhZuQykiO4oiuKU"/>
+          <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center p-6">
+            <button onclick="addToCart('Vortex Pro Controller', 185)" class="w-full kinetic-gradient py-4 rounded-xl font-headline font-bold text-white transition-transform translate-y-4 group-hover:translate-y-0">ADD TO CART</button>
+          </div>
+        </div>
+        <div class="p-6">
+          <span class="font-body text-xs text-primary font-bold uppercase tracking-widest mb-2 block">Equipment</span>
+          <h3 class="font-headline text-xl font-bold mb-2">Vortex Pro Controller</h3>
+          <p class="font-headline text-2xl font-light text-on-surface">$185.00</p>
+        </div>
+      </div>
+
+      <!-- Product 3 -->
+      <div class="product-card group relative bg-surface-container-high rounded-xl overflow-hidden flex flex-col transition-all duration-500 hover:-translate-y-2" data-product="merch" data-name="Kinetic Noir Desk Mat" data-price="45">
+        <div class="aspect-[4/5] overflow-hidden bg-surface-container-lowest relative">
+          <img alt="Kinetic Noir Desk Mat" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBdgRjQ8sCcNTLD578Sr6EXLmCPl6h9deGteQ4AuOBGrUe24i_39L6763wHKcNH-YyY8GmVnMvJUJtslInki1qz-aEhJvuTUaP1s1uohiTP_jzQ79ZCT1YRDGdqOpbMwxiRh_t1U2uR1YyaLYe9tVuAUruh-lO-NiQ5neUXVCMUzZVIf6t5aVmAPRMBGsKMy2bxvqWZRUjP55gpV7HkiFS7Xfa9RUlhnuYReZ_4PmwZm7Ndy9cYa_vgA2nYZkgqHvzbJ-85DhxFTvs"/>
+          <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center p-6">
+            <button onclick="addToCart('Kinetic Noir Desk Mat', 45)" class="w-full kinetic-gradient py-4 rounded-xl font-headline font-bold text-white transition-transform translate-y-4 group-hover:translate-y-0">ADD TO CART</button>
+          </div>
+        </div>
+        <div class="p-6">
+          <span class="font-body text-xs text-primary font-bold uppercase tracking-widest mb-2 block">Merch</span>
+          <h3 class="font-headline text-xl font-bold mb-2">Kinetic Noir Desk Mat</h3>
+          <p class="font-headline text-2xl font-light text-on-surface">$45.00</p>
+        </div>
+      </div>
+
+      <!-- Product 4 -->
+      <div class="product-card group relative bg-surface-container-high rounded-xl overflow-hidden flex flex-col transition-all duration-500 hover:-translate-y-2" data-product="equipment" data-name="Sonic Barrier H1 Headset" data-price="240">
+        <div class="aspect-[4/5] overflow-hidden bg-surface-container-lowest relative">
+          <img alt="Sonic Barrier H1 Headset" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAggq4H78HfkjyNT2R8F71TdsWrehHiTVy9SFlx0YoTHUGA9SPk91suesnoDwbs90WrzTpDB0Yft4uVTTNGMwrep5p2DYjIJw6fgb28ALyU-qbLcqI0KbxHoGVNSRzfMg8rRu9INhVW7gx7Oz3znKHNDOUSJHFNHTWGSWwV2vFEO8JW-YUipULbfomu01sw93OSEtHd0DGmRN8O0wV_fqhO8kR_bk4R8CBI3T_tYEPAeWhbmMmfbjXAbkfD1k73o58zGeCxn5FjNZ8"/>
+          <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center p-6">
+            <button onclick="addToCart('Sonic Barrier H1 Headset', 240)" class="w-full kinetic-gradient py-4 rounded-xl font-headline font-bold text-white transition-transform translate-y-4 group-hover:translate-y-0">ADD TO CART</button>
+          </div>
+        </div>
+        <div class="p-6">
+          <span class="font-body text-xs text-primary font-bold uppercase tracking-widest mb-2 block">Equipment</span>
+          <h3 class="font-headline text-xl font-bold mb-2">Sonic Barrier H1 Headset</h3>
+          <p class="font-headline text-2xl font-light text-on-surface">$240.00</p>
+        </div>
+      </div>
+
+      <!-- Product 5 -->
+      <div class="product-card group relative bg-surface-container-high rounded-xl overflow-hidden flex flex-col transition-all duration-500 hover:-translate-y-2" data-product="merch" data-name="Magnavox Cap" data-price="35">
+        <div class="aspect-[4/5] overflow-hidden bg-surface-container-lowest relative flex items-center justify-center">
+          <div class="text-center">
+            <span class="material-symbols-outlined text-primary text-8xl mb-4 block">style</span>
+            <p class="text-on-surface-variant font-headline text-sm">MAGNAVOX CAP</p>
+          </div>
+          <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center p-6">
+            <button onclick="addToCart('Magnavox Cap', 35)" class="w-full kinetic-gradient py-4 rounded-xl font-headline font-bold text-white transition-transform translate-y-4 group-hover:translate-y-0">ADD TO CART</button>
+          </div>
+        </div>
+        <div class="p-6">
+          <span class="font-body text-xs text-primary font-bold uppercase tracking-widest mb-2 block">Merch</span>
+          <h3 class="font-headline text-xl font-bold mb-2">Magnavox Cap</h3>
+          <p class="font-headline text-2xl font-light text-on-surface">$35.00</p>
+        </div>
+      </div>
+
+      <!-- Product 6 -->
+      <div class="product-card group relative bg-surface-container-high rounded-xl overflow-hidden flex flex-col transition-all duration-500 hover:-translate-y-2" data-product="equipment" data-name="Kinetic Mouse Pad XL" data-price="55">
+        <div class="aspect-[4/5] overflow-hidden bg-surface-container-lowest relative flex items-center justify-center">
+          <div class="text-center">
+            <span class="material-symbols-outlined text-primary text-8xl mb-4 block">mouse</span>
+            <p class="text-on-surface-variant font-headline text-sm">MOUSE PAD XL</p>
+          </div>
+          <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center p-6">
+            <button onclick="addToCart('Kinetic Mouse Pad XL', 55)" class="w-full kinetic-gradient py-4 rounded-xl font-headline font-bold text-white transition-transform translate-y-4 group-hover:translate-y-0">ADD TO CART</button>
+          </div>
+        </div>
+        <div class="p-6">
+          <span class="font-body text-xs text-primary font-bold uppercase tracking-widest mb-2 block">Equipment</span>
+          <h3 class="font-headline text-xl font-bold mb-2">Kinetic Mouse Pad XL</h3>
+          <p class="font-headline text-2xl font-light text-on-surface">$55.00</p>
+        </div>
+      </div>
+
+      <!-- Product 7 -->
+      <div class="product-card group relative bg-surface-container-high rounded-xl overflow-hidden flex flex-col transition-all duration-500 hover:-translate-y-2" data-product="clothes" data-name="Noir Edition Tee" data-price="45">
+        <div class="aspect-[4/5] overflow-hidden bg-surface-container-lowest relative flex items-center justify-center">
+          <div class="text-center">
+            <span class="material-symbols-outlined text-primary text-8xl mb-4 block">checkroom</span>
+            <p class="text-on-surface-variant font-headline text-sm">NOIR EDITION TEE</p>
+          </div>
+          <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center p-6">
+            <button onclick="addToCart('Noir Edition Tee', 45)" class="w-full kinetic-gradient py-4 rounded-xl font-headline font-bold text-white transition-transform translate-y-4 group-hover:translate-y-0">ADD TO CART</button>
+          </div>
+        </div>
+        <div class="p-6">
+          <span class="font-body text-xs text-primary font-bold uppercase tracking-widest mb-2 block">Clothes</span>
+          <h3 class="font-headline text-xl font-bold mb-2">Noir Edition Tee</h3>
+          <p class="font-headline text-2xl font-light text-on-surface">$45.00</p>
+        </div>
+      </div>
+
+      <!-- Product 8 -->
+      <div class="product-card group relative bg-surface-container-high rounded-xl overflow-hidden flex flex-col transition-all duration-500 hover:-translate-y-2" data-product="merch" data-name="Magnavox Poster Set" data-price="25">
+        <div class="aspect-[4/5] overflow-hidden bg-surface-container-lowest relative flex items-center justify-center">
+          <div class="text-center">
+            <span class="material-symbols-outlined text-primary text-8xl mb-4 block">crop_portrait</span>
+            <p class="text-on-surface-variant font-headline text-sm">POSTER SET (3)</p>
+          </div>
+          <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center p-6">
+            <button onclick="addToCart('Magnavox Poster Set', 25)" class="w-full kinetic-gradient py-4 rounded-xl font-headline font-bold text-white transition-transform translate-y-4 group-hover:translate-y-0">ADD TO CART</button>
+          </div>
+        </div>
+        <div class="p-6">
+          <span class="font-body text-xs text-primary font-bold uppercase tracking-widest mb-2 block">Merch</span>
+          <h3 class="font-headline text-xl font-bold mb-2">Magnavox Poster Set</h3>
+          <p class="font-headline text-2xl font-light text-on-surface">$25.00</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Newsletter CTA -->
+  <section class="px-10 py-32 bg-surface-container-lowest flex flex-col items-center text-center">
+    <h2 class="font-headline text-5xl font-bold mb-6 italic tracking-tighter">JOIN THE INNER CIRCLE</h2>
+    <p class="font-body text-on-surface-variant max-w-xl mb-10 text-lg">
+      Exclusive early access to limited Noir drops, professional equipment guides, and community-only merch.
+    </p>
+    <div class="flex w-full max-w-md gap-2">
+      <input class="flex-1 bg-surface-container p-4 font-headline tracking-widest text-sm focus:outline-none focus:ring-1 focus:ring-primary rounded-xl placeholder:text-on-surface-variant/30" placeholder="ENTER YOUR EMAIL" type="email"/>
+      <button class="kinetic-gradient px-6 py-4 rounded-xl font-headline font-bold text-white hover:brightness-110">JOIN</button>
+    </div>
+  </section>
+</main>
+
+<!-- Footer -->
+<footer class="w-full pt-20 pb-10 bg-[#0e0e0e]">
+  <div class="flex flex-col items-center justify-center space-y-8 px-10">
+    <a href="index.html" class="flex items-center gap-2 group">
+      <img src="assets/logo.png" alt="Magnavox Logo" class="h-8 w-8 object-contain transition-all duration-300 group-hover:scale-110"/>
+      <span class="text-xl font-bold text-[#e5e2e1] font-headline uppercase italic tracking-widest">Magnavox</span>
+    </a>
+    <div class="flex flex-wrap justify-center gap-10 font-body text-sm tracking-wide">
+      <a class="text-[#e7bdb6]/50 hover:text-[#ffb4a8] underline-offset-4 hover:underline transition-all" href="#">Privacy Policy</a>
+      <a class="text-[#e7bdb6]/50 hover:text-[#ffb4a8] underline-offset-4 hover:underline transition-all" href="#">Terms of Service</a>
+      <a class="text-[#e7bdb6]/50 hover:text-[#ffb4a8] underline-offset-4 hover:underline transition-all" href="#">Contact Support</a>
+      <a class="text-[#e7bdb6]/50 hover:text-[#ffb4a8] underline-offset-4 hover:underline transition-all" href="#">Press Kit</a>
+    </div>
+    <div class="text-[#e7bdb6]/30 text-xs font-light">© 2024 Magnavox. Kinetic Noir Editorial.</div>
+  </div>
+</footer>
+
+<script>
+  // ── Mobile menu ──────────────────────────────────────
+  document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+    const m = document.getElementById('mobile-menu');
+    m.classList.toggle('hidden');
+    m.classList.toggle('flex');
+  });
+
+  // ── Cart state ───────────────────────────────────────
+  let cart = [];
+
+  function openCart() {
+    document.getElementById('cart-sidebar').classList.add('open');
+    document.getElementById('cart-overlay').classList.remove('hidden');
+  }
+
+  function closeCart() {
+    document.getElementById('cart-sidebar').classList.remove('open');
+    document.getElementById('cart-overlay').classList.add('hidden');
+  }
+
+  function addToCart(name, price) {
+    const existing = cart.find(i => i.name === name);
+    if(existing) { existing.qty++; } 
+    else { cart.push({name, price, qty: 1}); }
+    renderCart();
+    showToast();
+    openCart();
+  }
+
+  function removeFromCart(name) {
+    cart = cart.filter(i => i.name !== name);
+    renderCart();
+  }
+
+  function renderCart() {
+    const container = document.getElementById('cart-items');
+    const empty = document.getElementById('cart-empty');
+    const countEl = document.getElementById('cart-count');
+    const totalEl = document.getElementById('cart-total');
+
+    const total = cart.reduce((s,i) => s + i.price * i.qty, 0);
+    const count = cart.reduce((s,i) => s + i.qty, 0);
+
+    totalEl.textContent = '$' + total.toFixed(2);
+    
+    if(count > 0) {
+      countEl.textContent = count;
+      countEl.classList.remove('hidden');
+    } else {
+      countEl.classList.add('hidden');
+    }
+
+    if(cart.length === 0) {
+      empty.classList.remove('hidden');
+      container.innerHTML = '';
+      container.appendChild(empty);
+    } else {
+      empty.classList.add('hidden');
+      container.innerHTML = cart.map(item => `
+        <div class="flex items-center justify-between bg-surface-container-high p-4 rounded-xl">
+          <div>
+            <p class="font-headline font-bold text-sm">${item.name}</p>
+            <p class="text-on-surface-variant text-xs">${item.qty} × $${item.price.toFixed(2)}</p>
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="font-headline font-bold text-primary">$${(item.price * item.qty).toFixed(2)}</span>
+            <button onclick="removeFromCart('${item.name}')" class="text-on-surface-variant hover:text-primary transition-colors">
+              <span class="material-symbols-outlined text-[18px]">close</span>
+            </button>
+          </div>
+        </div>
+      `).join('');
+    }
+  }
+
+  function showToast() {
+    const t = document.getElementById('toast');
+    t.style.opacity = '1';
+    t.style.transform = 'translateY(0)';
+    setTimeout(() => {
+      t.style.opacity = '0';
+      t.style.transform = 'translateY(1rem)';
+    }, 2000);
+  }
+
+  // ── Shop category filter ──────────────────────────────
+  function filterProducts(category) {
+    const cards = document.querySelectorAll('.product-card');
+    const btns = document.querySelectorAll('.shop-filter');
+    
+    btns.forEach(b => {
+      b.classList.remove('text-primary','border-b-2','border-primary');
+      b.classList.add('text-on-surface-variant/50');
+    });
+    const activeBtn = document.querySelector(`[data-shopfilter="${category}"]`);
+    if(activeBtn) {
+      activeBtn.classList.add('text-primary','border-b-2','border-primary');
+      activeBtn.classList.remove('text-on-surface-variant/50');
+    }
+
+    cards.forEach(card => {
+      if(category === 'all' || card.dataset.product === category) {
+        card.style.display = '';
+        card.style.opacity = '0';
+        setTimeout(() => { card.style.opacity = '1'; card.style.transition = 'opacity 0.3s'; }, 30);
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  }
+</script>
+</body>
+</html>
