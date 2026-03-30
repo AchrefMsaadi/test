@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MAGNAVOX | Training</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
+  <style>
+    .course-card {
+      background: var(--surface-high);
+      border-radius: 1rem;
+      overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s;
+      cursor: pointer;
+      border: 1px solid transparent;
+    }
+    .course-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(190,0,0,0.3);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+    }
+    .course-thumb {
+      height: 160px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .course-thumb .bg-icon {
+      position: absolute;
+      font-size: 8rem;
+      opacity: 0.08;
+      color: white;
+    }
+    .course-thumb .fg-icon {
+      font-size: 3rem;
+      position: relative;
+      z-index: 1;
+    }
+    .level-badge {
+      display: inline-block;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.6rem;
+      border-radius: 0.25rem;
+    }
+    .level-beginner { background: rgba(100,200,100,0.15); color: #90ee90; border: 1px solid rgba(100,200,100,0.3); }
+    .level-intermediate { background: rgba(255,180,168,0.15); color: #ffb4a8; border: 1px solid rgba(255,180,168,0.3); }
+    .level-advanced { background: rgba(190,0,0,0.2); color: #ff8888; border: 1px solid rgba(190,0,0,0.4); }
+    .track-tab {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-bottom: 2px solid transparent;
+      background: transparent;
+      color: var(--on-surface-variant);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .track-tab.active, .track-tab:hover {
+      color: #ffb4a8;
+      border-bottom-color: #be0000;
+    }
+    .faq-item {
+      border-bottom: 1px solid rgba(93,63,59,0.2);
+    }
+    .faq-question {
+      width: 100%;
+      background: none;
+      border: none;
+      color: var(--on-surface);
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600;
+      font-size: 1rem;
+      text-align: left;
+      padding: 1.25rem 0;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .faq-answer {
+      color: var(--on-surface-variant);
+      font-size: 0.9rem;
+      line-height: 1.7;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.2s;
+    }
+    .faq-answer.open {
+      max-height: 200px;
+      padding-bottom: 1.25rem;
+    }
+    .instructor-card {
+      background: var(--surface-high);
+      border-radius: 1rem;
+      padding: 2rem;
+      display: flex;
+      gap: 1.5rem;
+      align-items: flex-start;
+    }
+    .instructor-avatar {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #be0000, #930000);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+  </style>
+</head>
+<body>
+
+
+  <!-- AI Chat/Assistant Overlay (Pulse) -->
+<div class="hidden fixed bottom-28 right-8 z-[60] w-[380px] h-[550px] bg-surface-container-high rounded-2xl flex flex-col shadow-2xl border border-primary-container/30 overflow-hidden glass-panel animate-in fade-in slide-in-from-bottom-8 duration-300" id="pulse-chat">
+<!-- Header -->
+<div class="p-6 kinetic-gradient flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-black/30 flex items-center justify-center">
+<img alt="Pulse AI" class="w-7 h-7 object-contain" src="https://lh3.googleusercontent.com/aida/ADBb0ujKVjQ3WFGZP8fkJN36LBuWzOl5vWyqOHs8xQr8w7bLpJZNc1uwZsRppfOLB-U8Jll2XUPGoeBSGm21ff3vfOgcy4LG_1bMEhPt_tV_mELmOJz0DbMNdWqOKSMrV4AkApKfmahiyN3e7HIx9a0SJxZZEfyxU8stPQs-zBFI0fAvmslqajqYgGklqGeCz-LyiSD4T8jfy5YDIoUYCfnX_8IVNoig3vcXiWJmaWq6d-4rbqFV5wtwFEZGlwoVa9lUXCxoPDKwWzPKEg"/>
+</div>
+<div>
+<h4 class="font-headline font-bold text-white uppercase tracking-tighter">Magnavox Pulse</h4>
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+<span class="text-[10px] font-headline font-bold text-white/70 uppercase tracking-widest">AI Online</span>
+</div>
+</div>
+</div>
+<button class="text-white/70 hover:text-white transition-colors" onclick="document.getElementById('pulse-chat').classList.add('hidden')">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<!-- Chat Content -->
+<div class="flex-1 p-6 overflow-y-auto space-y-4 font-body">
+<div class="bg-surface-container p-4 rounded-xl rounded-tl-none border border-outline-variant/10">
+<p class="text-sm text-on-surface">Welcome to the kinetic core. I am Magnavox Pulse. How can I accelerate your career today?</p>
+</div>
+<div class="flex flex-col gap-2 pt-4">
+<button class="w-full text-left p-4 rounded-xl border border-primary-container/20 hover:bg-primary-container/10 transition-all text-sm font-bold font-headline uppercase tracking-wide group">
+<span class="text-primary group-hover:pl-2 transition-all">→ Analyze my profile</span>
+</button>
+<button class="w-full text-left p-4 rounded-xl border border-primary-container/20 hover:bg-primary-container/10 transition-all text-sm font-bold font-headline uppercase tracking-wide group">
+<span class="text-primary group-hover:pl-2 transition-all">→ Recommend courses for me</span>
+</button>
+<button class="w-full text-left p-4 rounded-xl border border-primary-container/20 hover:bg-primary-container/10 transition-all text-sm font-bold font-headline uppercase tracking-wide group">
+<span class="text-primary group-hover:pl-2 transition-all">→ Find local events</span>
+</button>
+</div>
+</div>
+<!-- Input area -->
+<div class="p-6 bg-surface-container-lowest border-t border-outline-variant/10">
+<div class="relative">
+<input class="w-full bg-surface-container-high border-none rounded-xl py-3 pl-4 pr-12 text-sm focus:ring-1 focus:ring-primary-container text-on-surface" placeholder="Type your command..." type="text"/>
+<button class="absolute right-2 top-1/2 -translate-y-1/2 text-primary-container p-2">
+<span class="material-symbols-outlined">send</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Floating Action Button -->
+<button class="fixed bottom-8 right-8 z-[60] w-16 h-16 rounded-full kinetic-gradient flex items-center justify-center pulse-glow shadow-2xl hover:scale-110 transition-transform active:scale-95 group" onclick="document.getElementById('pulse-chat').classList.toggle('hidden')">
+<img alt="Pulse AI" class="w-10 h-10 object-contain drop-shadow-lg group-hover:rotate-12 transition-transform" src="https://lh3.googleusercontent.com/aida/ADBb0ujKVjQ3WFGZP8fkJN36LBuWzOl5vWyqOHs8xQr8w7bLpJZNc1uwZsRppfOLB-U8Jll2XUPGoeBSGm21ff3vfOgcy4LG_1bMEhPt_tV_mELmOJz0DbMNdWqOKSMrV4AkApKfmahiyN3e7HIx9a0SJxZZEfyxU8stPQs-zBFI0fAvmslqajqYgGklqGeCz-LyiSD4T8jfy5YDIoUYCfnX_8IVNoig3vcXiWJmaWq6d-4rbqFV5wtwFEZGlwoVa9lUXCxoPDKwWzPKEg"/>
+</button>
+
+
+<div id="nav-placeholder"></div>
+
+<!-- HERO -->
+<section style="min-height:55vh;display:flex;align-items:flex-end;padding-top:6rem;background:radial-gradient(ellipse at 30% 50%,rgba(190,0,0,0.12) 0%,transparent 60%)">
+  <div class="container" style="padding-bottom:4rem">
+    <span class="section-label reveal">Curriculum</span>
+    <h1 class="section-title reveal" style="font-size:clamp(3rem,7vw,6rem)">SKILL UP. <span class="accent">LEVEL UP.</span></h1>
+    <p style="color:var(--on-surface-variant);font-size:1.1rem;max-width:580px" class="reveal">
+      Our curated curriculum transforms passionate gamers into industry-ready professionals. From code to creative direction — every path is powered by Magnavox Pulse AI.
+    </p>
+    <div style="display:flex;gap:2rem;margin-top:2.5rem;flex-wrap:wrap" class="reveal">
+      <div><span class="font-headline" style="font-size:2.5rem;font-weight:700;color:#ffb4a8">12+</span><p style="color:var(--on-surface-variant);font-size:0.85rem">Active Courses</p></div>
+      <div style="width:1px;background:rgba(93,63,59,0.3)"></div>
+      <div><span class="font-headline" style="font-size:2.5rem;font-weight:700;color:#ffb4a8">3</span><p style="color:var(--on-surface-variant);font-size:0.85rem">Career Tracks</p></div>
+      <div style="width:1px;background:rgba(93,63,59,0.3)"></div>
+      <div><span class="font-headline" style="font-size:2.5rem;font-weight:700;color:#ffb4a8">500+</span><p style="color:var(--on-surface-variant);font-size:0.85rem">Graduates</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- TRACKS -->
+<section style="background:#0e0e0e;padding-top:0">
+  <div class="container">
+    <div style="border-bottom:1px solid rgba(93,63,59,0.2);display:flex;gap:0;margin-bottom:3rem">
+      <button class="track-tab active" onclick="switchTrack('dev',this)">🎮 Game Dev</button>
+      <button class="track-tab" onclick="switchTrack('creative',this)">🎨 Creative</button>
+      <button class="track-tab" onclick="switchTrack('esports',this)">🏆 Esports</button>
+    </div>
+
+    <!-- DEV TRACK -->
+    <div id="track-dev">
+      <div style="margin-bottom:2rem">
+        <h2 class="font-headline" style="font-size:1.75rem;font-weight:700;text-transform:uppercase;margin-bottom:0.5rem">Game Development Track</h2>
+        <p style="color:var(--on-surface-variant);font-size:0.95rem;line-height:1.6;max-width:600px">Master the technical foundations of game creation — from engine fundamentals to shipping your first title.</p>
+      </div>
+      <div class="grid-3">
+
+        <div class="course-card reveal">
+          <div class="course-thumb" style="background:linear-gradient(135deg,#1a0000,#2a0a0a)">
+            <span class="material-symbols-outlined bg-icon">code_blocks</span>
+            <span class="material-symbols-outlined fg-icon" style="color:#ffb4a8">code_blocks</span>
+          </div>
+          <div style="padding:1.5rem">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.75rem">
+              <span class="level-badge level-beginner">Beginner</span>
+              <span style="color:var(--on-surface-variant);font-size:0.8rem">12 weeks</span>
+            </div>
+            <h3 class="font-headline" style="font-size:1.1rem;font-weight:700;text-transform:uppercase;margin-bottom:0.5rem">Game Programming Fundamentals</h3>
+            <p style="color:var(--on-surface-variant);font-size:0.85rem;line-height:1.5;margin-bottom:1rem">C++, GDScript, and Unity basics. Build your first 2D game from scratch.</p>
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <span style="font-weight:700;color:#ffb4a8">450 TND</span>
+              <a href="#" class="btn-primary" style="padding:0.4rem 1rem;font-size:0.65rem">Enroll</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="course-card reveal">
+          <div class="course-thumb" style="background:linear-gradient(135deg,#0a0020,#100030)">
+            <span class="material-symbols-outlined bg-icon">3d_rotation</span>
+            <span class="material-symbols-outlined fg-icon" style="color:#b9c3ff">3d_rotation</span>
+          </div>
+          <div style="padding:1.5rem">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.75rem">
+              <span class="level-badge level-intermediate">Intermediate</span>
+              <span style="color:var(--on-surface-variant);font-size:0.8rem">10 weeks</span>
+            </div>
+            <h3 class="font-headline" style="font-size:1.1rem;font-weight:700;text-transform:uppercase;margin-bottom:0.5rem">Unreal Engine 5 Masterclass</h3>
+            <p style="color:var(--on-surface-variant);font-size:0.85rem;line-height:1.5;margin-bottom:1rem">Nanite, Lumen, Blueprints, MetaSounds — build a portfolio-ready AAA-style level.</p>
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <span style="font-weight:700;color:#ffb4a8">800 TND</span>
+              <a href="#" class="btn-primary" style="padding:0.4rem 1rem;font-size:0.65rem">Enroll</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="course-card reveal">
+          <div class="course-thumb" style="background:linear-gradient(135deg,#001a00,#002a0a)">
+            <span class="material-symbols-outlined bg-icon">memory</span>
+            <span class="material-symbols-outlined fg-icon" style="color:#90ee90">memory</span>
+          </div>
+          <div style="padding:1.5rem">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.75rem">
+              <span class="level-badge level-advanced">Advanced</span>
+              <span style="color:var(--on-surface-variant);font-size:0.8rem">16 weeks</span>
+            </div>
+            <h3 class="font-headline" style="font-size:1.1rem;font-weight:700;text-transform:uppercase;margin-bottom:0.5rem">AI & Procedural Systems</h3>
+            <p style="color:var(--on-surface-variant);font-size:0.85rem;line-height:1.5;margin-bottom:1rem">Behavior trees, pathfinding, procedural generation, and ML-driven NPC systems.</p>
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <span style="font-weight:700;color:#ffb4a8">1,200 TND</span>
+              <a href="#" class="btn-primary" style="padding:0.4rem 1rem;font-size:0.65rem">Enroll</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="course-card reveal">
+          <div class="course-thumb" style="background:linear-gradient(135deg,#1a0a00,#2a1500)">
+            <span class="material-symbols-outlined bg-icon">stadia_controller</span>
+            <span class="material-symbols-outlined fg-icon" style="color:#ffcc80">stadia_controller</span>
+          </div>
+          <div style="padding:1.5rem">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.75rem">
+              <span class="level-badge level-intermediate">Intermediate</span>
+              <span style="color:var(--on-surface-variant);font-size:0.8rem">8 weeks</span>
+            </div>
+            <h3 class="font-headline" style="font-size:1.1rem;font-weight:700;text-transform:uppercase;margin-bottom:0.5rem">Game Design & Mechanics</h3>
+            <p style="color:var(--on-surface-variant);font-size:0.85rem;line-height:1.5;margin-bottom:1rem">Core loops, balancing, player psychology, and playtesting methodology.</p>
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <span style="font-weight:700;color:#ffb4a8">550 TND</span>
+              <a href="#" class="btn-primary" style="padding:0.4rem 1rem;font-size:0.65rem">Enroll</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- CREATIVE TRACK -->
+    <div id="track-creative" style="display:none">
+      <div style="margin-bottom:2rem">
+        <h2 class="font-headline" style="font-size:1.75rem;font-weight:700;text-transform:uppercase;margin-bottom:0.5rem">Creative Track</h2>
+        <p style="color:var(--on-surface-variant);font-size:0.95rem;line-height:1.6;max-width:600px">Blend artistic vision with technical skill. From 3D art to brand identity — learn to build worlds visually.</p>
+      </div>
+      <div class="grid-3">
+
+        <div class="course-card reveal">
+          <div class="course-thumb" style="background:linear-gradient(135deg,#1a001a,#2a0028)">
+            <span class="material-symbols-outlined bg-icon">brush</span>
+            <span class="material-symbols-outlined fg-icon" style="color:#e040fb">brush</span>
+          </div>
+          <div style="padding:1.5rem">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.75rem">
+              <span class="level-badge level-beginner">Beginner</span>
+              <span style="color:var(--on-surface-variant);font-size:0.8rem">8 weeks</span>
+            </div>
+            <h3 class="font-headline" style="font-size:1.1rem;font-weight:700;text-transform:uppercase;margin-bottom:0.5rem">Digital Concept Art</h3>
+            <p style="color:var(--on-surface-variant);font-size:0.85rem;line-height:1.5;margin-bottom:1rem">Character and environment concepts using Procreate and Photoshop. Industry-standard workflow.</p>
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <span style="font-weight:700;color:#ffb4a8">400 TND</span>
+              <a href="#" class="btn-primary" style="padding:0.4rem 1rem;font-size:0.65rem">Enroll</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="course-card reveal">
+          <div class="course-thumb" style="background:linear-gradient(135deg,#001520,#002030)">
+            <span class="material-symbols-outlined bg-icon">deployed_code</span>
+            <span class="material-symbols-outlined fg-icon" style="color:#40c4ff">deployed_code</span>
+          </div>
+          <div style="padding:1.5rem">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.75rem">
+              <span class="level-badge level-intermediate">Intermediate</span>
+              <span style="color:var(--on-surface-variant);font-size:0.8rem">10 weeks</span>
+            </div>
+            <h3 class="font-headline" style="font-size:1.1rem;font-weight:700;text-transform:uppercase;margin-bottom:0.5rem">3D Modeling & Texturing</h3>
+            <p style="color:var(--on-surface-variant);font-size:0.85rem;line-height:1.5;margin-bottom:1rem">Blender, Substance Painter, and game-ready asset pipelines for real-time environments.</p>
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <span style="font-weight:700;color:#ffb4a8">700 TND</span>
+              <a href="#" class="btn-primary" style="padding:0.4rem 1rem;font-size:0.65rem">Enroll</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="course-card reveal">
+          <div class="course-thumb" style="background:linear-gradient(135deg,#1a1500,#2a2000)">
+            <span class="material-symbols-outlined bg-icon">movie</span>
+            <span class="material-symbols-outlined fg-icon" style="color:#ffd740">movie</span>
+          </div>
+          <div style="padding:1.5rem">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.75rem">
+              <span class="level-badge level-advanced">Advanced</span>
+              <span style="color:var(--on-surface-variant);font-size:0.8rem">8 weeks</span>
+            </div>
+            <h3 class="font-headline" style="font-size:1.1rem;font-weight:700;text-transform:uppercase;margin-bottom:0.5rem">Creative Direction</h3>
+            <p style="color:var(--on-surface-variant);font-size:0.85rem;line-height:1.5;margin-bottom:1rem">Visual identity, mood boards, art direction for games and brand campaigns.</p>
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <span style="font-weight:700;color:#ffb4a8">900 TND</span>
+              <a href="#" class="btn-primary" style="padding:0.4rem 1rem;font-size:0.65rem">Enroll</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ESPORTS TRACK -->
+    <div id="track-esports" style="display:none">
+      <div style="margin-bottom:2rem">
+        <h2 class="font-headline" style="font-size:1.75rem;font-weight:700;text-transform:uppercase;margin-bottom:0.5rem">Esports Track</h2>
+        <p style="color:var(--on-surface-variant);font-size:0.95rem;line-height:1.6;max-width:600px">Turn competitive passion into a career. Management, production, marketing, and coaching — the business side of esports.</p>
+      </div>
+      <div class="grid-3">
+
+        <div class="course-card reveal">
+          <div class="course-thumb" style="background:linear-gradient(135deg,#001800,#002800)">
+            <span class="material-symbols-outlined bg-icon">strategy</span>
+            <span class="material-symbols-outlined fg-icon" style="color:#69f0ae">strategy</span>
+          </div>
+          <div style="padding:1.5rem">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.75rem">
+              <span class="level-badge level-beginner">Beginner</span>
+              <span style="color:var(--on-surface-variant);font-size:0.8rem">6 weeks</span>
+            </div>
+            <h3 class="font-headline" style="font-size:1.1rem;font-weight:700;text-transform:uppercase;margin-bottom:0.5rem">Esports Management</h3>
+            <p style="color:var(--on-surface-variant);font-size:0.85rem;line-height:1.5;margin-bottom:1rem">Team operations, contracts, player welfare, and organizational structure.</p>
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <span style="font-weight:700;color:#ffb4a8">350 TND</span>
+              <a href="#" class="btn-primary" style="padding:0.4rem 1rem;font-size:0.65rem">Enroll</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="course-card reveal">
+          <div class="course-thumb" style="background:linear-gradient(135deg,#100018,#180025)">
+            <span class="material-symbols-outlined bg-icon">videocam</span>
+            <span class="material-symbols-outlined fg-icon" style="color:#ea80fc">videocam</span>
+          </div>
+          <div style="padding:1.5rem">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.75rem">
+              <span class="level-badge level-intermediate">Intermediate</span>
+              <span style="color:var(--on-surface-variant);font-size:0.8rem">8 weeks</span>
+            </div>
+            <h3 class="font-headline" style="font-size:1.1rem;font-weight:700;text-transform:uppercase;margin-bottom:0.5rem">Esports Production</h3>
+            <p style="color:var(--on-surface-variant);font-size:0.85rem;line-height:1.5;margin-bottom:1rem">OBS, stream overlays, broadcast graphics, camerawork, and live show running.</p>
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <span style="font-weight:700;color:#ffb4a8">600 TND</span>
+              <a href="#" class="btn-primary" style="padding:0.4rem 1rem;font-size:0.65rem">Enroll</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="course-card reveal">
+          <div class="course-thumb" style="background:linear-gradient(135deg,#1a0800,#2a1200)">
+            <span class="material-symbols-outlined bg-icon">trending_up</span>
+            <span class="material-symbols-outlined fg-icon" style="color:#ff9800">trending_up</span>
+          </div>
+          <div style="padding:1.5rem">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.75rem">
+              <span class="level-badge level-intermediate">Intermediate</span>
+              <span style="color:var(--on-surface-variant);font-size:0.8rem">6 weeks</span>
+            </div>
+            <h3 class="font-headline" style="font-size:1.1rem;font-weight:700;text-transform:uppercase;margin-bottom:0.5rem">Digital Marketing for Gaming</h3>
+            <p style="color:var(--on-surface-variant);font-size:0.85rem;line-height:1.5;margin-bottom:1rem">Social strategy, content creation, influencer campaigns, and audience analytics.</p>
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <span style="font-weight:700;color:#ffb4a8">480 TND</span>
+              <a href="#" class="btn-primary" style="padding:0.4rem 1rem;font-size:0.65rem">Enroll</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INSTRUCTORS -->
+<section>
+  <div class="container">
+    <span class="section-label reveal">Who Teaches You</span>
+    <h2 class="section-title reveal">MEET THE <span class="accent">MENTORS</span></h2>
+    <div class="grid-3" style="margin-top:2rem">
+
+      <div class="instructor-card reveal">
+        <div class="instructor-avatar">
+          <span class="material-symbols-outlined" style="color:white;font-size:2rem">person</span>
+        </div>
+        <div>
+          <h4 class="font-headline" style="font-weight:700;font-size:1rem;text-transform:uppercase;margin-bottom:0.3rem">Anis Boukari</h4>
+          <span class="section-label" style="margin:0 0 0.75rem;display:block">Lead Game Dev Instructor</span>
+          <p style="color:var(--on-surface-variant);font-size:0.85rem;line-height:1.5">8 years at Ubisoft Montréal. Shipped 3 AAA titles. Now back in Tunisia building the next generation.</p>
+        </div>
+      </div>
+
+      <div class="instructor-card reveal">
+        <div class="instructor-avatar" style="background:linear-gradient(135deg,#0046f5,#0034be)">
+          <span class="material-symbols-outlined" style="color:white;font-size:2rem">brush</span>
+        </div>
+        <div>
+          <h4 class="font-headline" style="font-weight:700;font-size:1rem;text-transform:uppercase;margin-bottom:0.3rem">Sarra Mekki</h4>
+          <span class="section-label" style="margin:0 0 0.75rem;display:block">Creative Director & Art Lead</span>
+          <p style="color:var(--on-surface-variant);font-size:0.85rem;line-height:1.5">Freelance concept artist with credits on mobile titles and EU game studios. Specializes in world-building.</p>
+        </div>
+      </div>
+
+      <div class="instructor-card reveal">
+        <div class="instructor-avatar" style="background:linear-gradient(135deg,#1a6b00,#0d4000)">
+          <span class="material-symbols-outlined" style="color:white;font-size:2rem">sports_esports</span>
+        </div>
+        <div>
+          <h4 class="font-headline" style="font-weight:700;font-size:1rem;text-transform:uppercase;margin-bottom:0.3rem">Mehdi Tlili</h4>
+          <span class="section-label" style="margin:0 0 0.75rem;display:block">Esports Coach & Analyst</span>
+          <p style="color:var(--on-surface-variant);font-size:0.85rem;line-height:1.5">Former professional Valorant player. Ranked top 200 EMEA. Now coaching Tunisia's top competitive squads.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section style="background:#0e0e0e">
+  <div class="container">
+    <span class="section-label reveal">Process</span>
+    <h2 class="section-title reveal">HOW IT <span class="accent">WORKS</span></h2>
+    <div class="grid-3" style="margin-top:2.5rem">
+      <div class="reveal" style="text-align:center;padding:2rem">
+        <div style="width:64px;height:64px;border-radius:50%;border:2px solid #be0000;display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;font-family:'Space Grotesk';font-size:1.5rem;font-weight:700">01</div>
+        <h3 class="font-headline" style="font-weight:700;text-transform:uppercase;font-size:1.1rem;margin-bottom:0.75rem">Pick Your Track</h3>
+        <p style="color:var(--on-surface-variant);font-size:0.9rem;line-height:1.6">Choose from Game Dev, Creative, or Esports. Magnavox Pulse will suggest the best fit based on your profile.</p>
+      </div>
+      <div class="reveal" style="text-align:center;padding:2rem">
+        <div style="width:64px;height:64px;border-radius:50%;background:#be0000;display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;font-family:'Space Grotesk';font-size:1.5rem;font-weight:700;color:white">02</div>
+        <h3 class="font-headline" style="font-weight:700;text-transform:uppercase;font-size:1.1rem;margin-bottom:0.75rem">Learn & Build</h3>
+        <p style="color:var(--on-surface-variant);font-size:0.9rem;line-height:1.6">Attend live sessions, complete real projects, and get 1-on-1 mentor feedback. All online or in-person in Tunis/Sfax.</p>
+      </div>
+      <div class="reveal" style="text-align:center;padding:2rem">
+        <div style="width:64px;height:64px;border-radius:50%;border:2px solid #be0000;display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;font-family:'Space Grotesk';font-size:1.5rem;font-weight:700">03</div>
+        <h3 class="font-headline" style="font-weight:700;text-transform:uppercase;font-size:1.1rem;margin-bottom:0.75rem">Get Certified & Hired</h3>
+        <p style="color:var(--on-surface-variant);font-size:0.9rem;line-height:1.6">Receive your Magnavox certificate, get added to our talent network, and connect with partner studios and companies.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section>
+  <div class="container">
+    <span class="section-label reveal">FAQ</span>
+    <h2 class="section-title reveal" style="margin-bottom:2.5rem">COMMON <span class="accent">QUESTIONS</span></h2>
+    <div style="max-width:800px">
+
+      <div class="faq-item reveal">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Do I need prior experience to enroll?
+          <span class="material-symbols-outlined" style="color:#be0000;flex-shrink:0">expand_more</span>
+        </button>
+        <div class="faq-answer">Most beginner courses require zero prior experience. Intermediate and advanced courses list prerequisites clearly. Contact us if unsure — we'll point you to the right starting point.</div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Are courses online or in-person?
+          <span class="material-symbols-outlined" style="color:#be0000;flex-shrink:0">expand_more</span>
+        </button>
+        <div class="faq-answer">We offer a hybrid model. Live sessions happen in Tunis and Sfax, with recordings available within 24 hours. Full online participation is supported for remote students.</div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Is there a payment plan available?
+          <span class="material-symbols-outlined" style="color:#be0000;flex-shrink:0">expand_more</span>
+        </button>
+        <div class="faq-answer">Yes. All courses above 500 TND can be split into 2–3 installments. Reach out to our team via the contact page for payment plan options before enrolling.</div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          What does the Magnavox certificate get me?
+          <span class="material-symbols-outlined" style="color:#be0000;flex-shrink:0">expand_more</span>
+        </button>
+        <div class="faq-answer">Our certificates are recognized by partner studios and companies in Tunisia and the broader MENA region. Graduates also get added to the Magnavox talent network, which connects them directly to recruiters.</div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Can I take multiple courses at once?
+          <span class="material-symbols-outlined" style="color:#be0000;flex-shrink:0">expand_more</span>
+        </button>
+        <div class="faq-answer">We recommend one intensive course at a time for best results. However, pairing one technical course with one creative or management course is a common and manageable combination.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section style="background:#0e0e0e">
+  <div class="container" style="text-align:center">
+    <div class="reveal" style="border:1px solid rgba(190,0,0,0.2);border-radius:1.5rem;padding:4rem;background:radial-gradient(ellipse at center,rgba(190,0,0,0.08) 0%,transparent 70%)">
+      <span class="section-label">Start Today</span>
+      <h2 class="section-title" style="margin-bottom:1rem">READY TO <span class="accent">LEVEL UP?</span></h2>
+      <p style="color:var(--on-surface-variant);max-width:480px;margin:0 auto 2.5rem;font-size:1rem;line-height:1.7">
+        Apply in minutes. Start within the week. Join 500+ Tunisian creators and competitors who chose the kinetic path.
+      </p>
+      <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+        <a href="#" class="btn-primary">Apply Now</a>
+        <a href="#" class="btn-outline">Talk to an Advisor</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div id="footer-placeholder"></div>
+<div id="mobile-nav-placeholder"></div>
+
+<script src="js/nav.js"></script>
+<script src="js/main.js"></script>
+<script>
+  injectNav('training');
+
+  function switchTrack(track, btn) {
+    document.querySelectorAll('.track-tab').forEach(t => t.classList.remove('active'));
+    btn.classList.add('active');
+    ['dev','creative','esports'].forEach(t => {
+      document.getElementById('track-' + t).style.display = t === track ? 'block' : 'none';
+    });
+    // re-trigger reveal for newly visible cards
+    document.querySelectorAll('#track-' + track + ' .reveal').forEach(el => {
+      el.style.opacity = '1';
+      el.style.transform = 'translateY(0)';
+    });
+  }
+
+  function toggleFaq(btn) {
+    const answer = btn.nextElementSibling;
+    const icon = btn.querySelector('.material-symbols-outlined');
+    answer.classList.toggle('open');
+    icon.textContent = answer.classList.contains('open') ? 'expand_less' : 'expand_more';
+  }
+</script>
+</body>
+</html>
