@@ -58,7 +58,6 @@ function injectNav(activePage) {
           </div>
           <div style="display:flex;flex-direction:column;gap:0.75rem">
             <span class="section-label" style="margin-bottom:0.25rem">Support</span>
-            <a href="#" style="color:var(--on-surface-variant);text-decoration:none;font-size:0.9rem">Career Hub</a>
             <a href="#" style="color:var(--on-surface-variant);text-decoration:none;font-size:0.9rem">Contact</a>
             <a href="#" style="color:var(--on-surface-variant);text-decoration:none;font-size:0.9rem">Privacy</a>
           </div>
@@ -70,7 +69,7 @@ function injectNav(activePage) {
         </div>
       </div>
       <div style="text-align:center;color:rgba(160,154,153,0.4);font-size:0.7rem;letter-spacing:0.3em;text-transform:uppercase;border-top:1px solid rgba(93,63,59,0.1);padding-top:2rem">
-        © 2024 Magnavox Kinetic Labs. All Rights Reserved.
+        © 2026 Magnavox Kinetic Labs. All Rights Reserved.
       </div>
     </div>
   </footer>`;
