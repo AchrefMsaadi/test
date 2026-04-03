@@ -63,8 +63,8 @@ function injectNav(activePage) {
           </div>
           <div style="display:flex;flex-direction:column;gap:0.75rem">
             <span class="section-label" style="margin-bottom:0.25rem">Social</span>
-            <a href="#" style="color:var(--on-surface-variant);text-decoration:none;font-size:0.9rem;font-weight:700;font-style:italic">DISCORD</a>
-            <a href="#" style="color:var(--on-surface-variant);text-decoration:none;font-size:0.9rem;font-weight:700;font-style:italic">X.COM</a>
+            <a href="https://discord.gg/ZsuhG9Rr" style="color:var(--on-surface-variant);text-decoration:none;font-size:0.9rem;font-weight:700;font-style:italic">DISCORD</a>
+            <a href="https://www.facebook.com/profile.php?id=61566860282803" style="color:var(--on-surface-variant);text-decoration:none;font-size:0.9rem;font-weight:700;font-style:italic">FACEBOOK</a>
           </div>
         </div>
       </div>
