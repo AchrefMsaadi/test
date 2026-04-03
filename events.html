@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MAGNAVOX | Elite Events</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
+  <link rel="icon" type="image/png" href="assets/logo.png">
+  <style>
+    .event-hero {
+      min-height: 55vh;
+      display: flex;
+      align-items: flex-end;
+      padding-top: 6rem;
+      position: relative;
+      overflow: hidden;
+      background: radial-gradient(ellipse at 70% 40%, rgba(190,0,0,0.15) 0%, transparent 60%);
+    }
+    .event-card-big {
+      background: var(--surface-high);
+      border-radius: 1rem;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      transition: transform 0.3s, box-shadow 0.3s;
+      border: 1px solid transparent;
+    }
+    .event-card-big:hover {
+      transform: translateY(-4px);
+      border-color: rgba(190,0,0,0.25);
+      box-shadow: 0 16px 48px rgba(0,0,0,0.4);
+    }
+    .event-card-thumb {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 200px;
+    }
+    .countdown-box {
+      background: var(--surface-high);
+      border: 1px solid rgba(190,0,0,0.3);
+      border-radius: 0.5rem;
+      padding: 1rem;
+      text-align: center;
+      min-width: 70px;
+    }
+    .countdown-num {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: #ffb4a8;
+      display: block;
+    }
+    .countdown-label {
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+    }
+    @media(max-width:768px){
+      .event-card-big { grid-template-columns: 1fr; }
+      .featured-grid { grid-template-columns: 1fr !important; }
+    }
+  </style>
+</head>
+<body>
+<div id="nav-placeholder"></div>
+
+<!-- HERO -->
+<div class="event-hero">
+  <div class="container" style="padding-bottom:4rem">
+    <span class="section-label reveal">Gaming Events</span>
+    <h1 class="section-title reveal" style="font-size:clamp(3rem,7vw,6rem)">ELITE <span class="accent">EVENTS</span></h1>
+    <p style="color:var(--on-surface-variant);font-size:1.1rem;max-width:540px" class="reveal">
+      From mega-tournaments to grassroots gaming nights — Magnavox hosts the defining moments of Tunisian esports culture.
+    </p>
+  </div>
+</div>
+
+<!-- FEATURED EVENT -->
+<section style="background:#0e0e0e">
+  <div class="container">
+    <span class="section-label reveal">Featured</span>
+    <div class="reveal" style="background:var(--surface-high);border-radius:1.5rem;overflow:hidden;border:1px solid rgba(190,0,0,0.2);margin-top:1rem">
+      <div class="featured-grid" style="display:grid;grid-template-columns:1fr 1fr;min-height:420px">
+        <div style="background:radial-gradient(ellipse at 40% 50%,rgba(190,0,0,0.35) 0%,rgba(10,10,10,0.9) 70%);padding:3rem;display:flex;flex-direction:column;justify-content:center">
+          <span class="tag live" style="margin-bottom:1.5rem;display:inline-block">🔴 Registration Open</span>
+          <h2 class="font-headline" style="font-size:2.5rem;font-weight:700;text-transform:uppercase;letter-spacing:-0.02em;margin-bottom:1rem">North Africa<br/>Open 2024</h2>
+          <p style="color:var(--on-surface-variant);line-height:1.7;margin-bottom:2rem">
+            The premier esports tournament in North Africa. Compete across Valorant, League of Legends, and FC 25 with live broadcast to 50,000+ viewers across the MENA region.
+          </p>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:2rem">
+            <div><p style="color:var(--on-surface-variant);font-size:0.7rem;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.2rem">Date</p><p style="font-weight:700">Dec 20–22, 2024</p></div>
+            <div><p style="color:var(--on-surface-variant);font-size:0.7rem;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.2rem">Location</p><p style="font-weight:700">Tunis Expo Center</p></div>
+            <div><p style="color:var(--on-surface-variant);font-size:0.7rem;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.2rem">Prize Pool</p><p style="font-weight:700;color:#ffb4a8">25,000 TND</p></div>
+            <div><p style="color:var(--on-surface-variant);font-size:0.7rem;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.2rem">Format</p><p style="font-weight:700">64 Teams · Double Elim</p></div>
+          </div>
+          <a href="#" class="btn-primary" style="width:fit-content">Register Your Team</a>
+        </div>
+        <div style="padding:3rem">
+          <h3 class="font-headline" style="font-weight:700;text-transform:uppercase;font-size:0.85rem;letter-spacing:0.12em;margin-bottom:1.25rem;color:var(--on-surface-variant)">Countdown to Event</h3>
+          <div style="display:flex;gap:0.75rem;margin-bottom:2.5rem;flex-wrap:wrap">
+            <div class="countdown-box"><span class="countdown-num" id="cd-days">--</span><span class="countdown-label">Days</span></div>
+            <div class="countdown-box"><span class="countdown-num" id="cd-hours">--</span><span class="countdown-label">Hours</span></div>
+            <div class="countdown-box"><span class="countdown-num" id="cd-mins">--</span><span class="countdown-label">Mins</span></div>
+            <div class="countdown-box"><span class="countdown-num" id="cd-secs">--</span><span class="countdown-label">Secs</span></div>
+          </div>
+          <h3 class="font-headline" style="font-weight:700;text-transform:uppercase;font-size:0.85rem;letter-spacing:0.12em;margin-bottom:1rem;color:var(--on-surface-variant)">Games</h3>
+          <div style="display:flex;flex-direction:column;gap:0.75rem;margin-bottom:2rem">
+            <div style="display:flex;align-items:center;gap:0.75rem;padding:0.6rem 0;border-bottom:1px solid rgba(93,63,59,0.15)">
+              <span class="material-symbols-outlined" style="color:#be0000;font-size:1.2rem">sports_esports</span>
+              <span style="font-weight:600">Valorant</span>
+              <span class="tag" style="margin-left:auto">32 Teams</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:0.75rem;padding:0.6rem 0;border-bottom:1px solid rgba(93,63,59,0.15)">
+              <span class="material-symbols-outlined" style="color:#be0000;font-size:1.2rem">sports_esports</span>
+              <span style="font-weight:600">League of Legends</span>
+              <span class="tag" style="margin-left:auto">16 Teams</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:0.75rem;padding:0.6rem 0">
+              <span class="material-symbols-outlined" style="color:#be0000;font-size:1.2rem">sports_esports</span>
+              <span style="font-weight:600">FC 25</span>
+              <span class="tag" style="margin-left:auto">16 Players</span>
+            </div>
+          </div>
+          <h3 class="font-headline" style="font-weight:700;text-transform:uppercase;font-size:0.85rem;letter-spacing:0.12em;margin-bottom:0.75rem;color:var(--on-surface-variant)">Spots Remaining</h3>
+          <div style="font-size:0.85rem;display:flex;justify-content:space-between;margin-bottom:0.4rem"><span>Valorant</span><span style="color:#ffb4a8">12 left</span></div>
+          <div class="progress-bar"><div class="progress-fill" style="width:62%"></div></div>
+          <div style="font-size:0.85rem;display:flex;justify-content:space-between;margin:0.9rem 0 0.4rem"><span>FC 25</span><span style="color:#ffb4a8">4 left</span></div>
+          <div class="progress-bar"><div class="progress-fill" style="width:85%"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ALL GAMING EVENTS -->
+<section>
+  <div class="container">
+    <span class="section-label reveal">All Events</span>
+    <h2 class="section-title reveal">UPCOMING <span class="accent">GAMING EVENTS</span></h2>
+    <div style="display:flex;flex-direction:column;gap:1.5rem;margin-top:2rem">
+
+      <!-- Valorant Community Cup -->
+      <div class="event-card-big reveal">
+        <div class="event-card-thumb" style="background:linear-gradient(135deg,rgba(255,70,85,0.25),rgba(19,19,19,0.95))">
+          <span class="material-symbols-outlined" style="font-size:4rem;color:#ff4655;opacity:0.8">gps_fixed</span>
+        </div>
+        <div style="padding:2rem">
+          <div style="display:flex;gap:0.75rem;flex-wrap:wrap;margin-bottom:0.75rem;align-items:center">
+            <span class="tag live">Registration Open</span>
+            <span style="color:var(--on-surface-variant);font-size:0.8rem;font-weight:600">Valorant</span>
+          </div>
+          <h3 class="font-headline" style="font-size:1.4rem;font-weight:700;text-transform:uppercase;margin-bottom:0.6rem">Valorant Community Cup — Tunis</h3>
+          <p style="color:var(--on-surface-variant);font-size:0.9rem;line-height:1.6;margin-bottom:1.25rem">Open-ranked 5v5 tournament for Tunis-based teams. From Iron to Diamond, all ranks welcome. Best-of-3 bracket with Magnavox casters.</p>
+          <div style="display:flex;gap:2rem;flex-wrap:wrap;margin-bottom:1.25rem">
+            <div><p style="color:var(--on-surface-variant);font-size:0.7rem;text-transform:uppercase;letter-spacing:0.1em">Date</p><p style="font-weight:600;font-size:0.9rem;margin-top:0.2rem">Nov 9, 2024</p></div>
+            <div><p style="color:var(--on-surface-variant);font-size:0.7rem;text-transform:uppercase;letter-spacing:0.1em">Venue</p><p style="font-weight:600;font-size:0.9rem;margin-top:0.2rem">LAN Café Ariana, Tunis</p></div>
+            <div><p style="color:var(--on-surface-variant);font-size:0.7rem;text-transform:uppercase;letter-spacing:0.1em">Entry</p><p style="font-weight:600;font-size:0.9rem;margin-top:0.2rem">30 TND / team</p></div>
+            <div><p style="color:var(--on-surface-variant);font-size:0.7rem;text-transform:uppercase;letter-spacing:0.1em">Prize</p><p style="font-weight:600;font-size:0.9rem;color:#ffb4a8;margin-top:0.2rem">2,000 TND</p></div>
+          </div>
+          <a href="#" class="btn-primary" style="padding:0.6rem 1.4rem;font-size:0.7rem">Register Team</a>
+        </div>
+      </div>
+
+      <!-- LoL Clash Night -->
+      <div class="event-card-big reveal">
+        <div class="event-card-thumb" style="background:linear-gradient(135deg,rgba(200,155,60,0.25),rgba(19,19,19,0.95))">
+          <span class="material-symbols-outlined" style="font-size:4rem;color:#c89b3c;opacity:0.8">shield</span>
+        </div>
+        <div style="padding:2rem">
+          <div style="display:flex;gap:0.75rem;flex-wrap:wrap;margin-bottom:0.75rem;align-items:center">
+            <span class="tag upcoming">Coming Soon</span>
+            <span style="color:var(--on-surface-variant);font-size:0.8rem;font-weight:600">League of Legends</span>
+          </div>
+          <h3 class="font-headline" style="font-size:1.4rem;font-weight:700;text-transform:uppercase;margin-bottom:0.6rem">LoL Clash Night Series</h3>
+          <p style="color:var(--on-surface-variant);font-size:0.9rem;line-height:1.6;margin-bottom:1.25rem">Weekly Friday-night Clash tournaments for Tunisian Summoners. 8-team single-elim bracket, streamed live. Season passes available — the team with the most weekly wins takes the grand prize.</p>
+          <div style="display:flex;gap:2rem;flex-wrap:wrap;margin-bottom:1.25rem">
+            <div><p style="color:var(--on-surface-variant);font-size:0.7rem;text-transform:uppercase;letter-spacing:0.1em">Starts</p><p style="font-weight:600;font-size:0.9rem;margin-top:0.2rem">Every Friday from Oct 25</p></div>
+            <div><p style="color:var(--on-surface-variant);font-size:0.7rem;text-transform:uppercase;letter-spacing:0.1em">Format</p><p style="font-weight:600;font-size:0.9rem;margin-top:0.2rem">Online</p></div>
+            <div><p style="color:var(--on-surface-variant);font-size:0.7rem;text-transform:uppercase;letter-spacing:0.1em">Entry</p><p style="font-weight:600;font-size:0.9rem;color:#90ee90;margin-top:0.2rem">Free</p></div>
+            <div><p style="color:var(--on-surface-variant);font-size:0.7rem;text-transform:uppercase;letter-spacing:0.1em">Season Prize</p><p style="font-weight:600;font-size:0.9rem;color:#ffb4a8;margin-top:0.2rem">5,000 TND</p></div>
+          </div>
+          <a href="#" class="btn-outline" style="padding:0.6rem 1.4rem;font-size:0.7rem">Join Waitlist</a>
+        </div>
+      </div>
+
+      <!-- FC 25 1v1 -->
+      <div class="event-card-big reveal">
+        <div class="event-card-thumb" style="background:linear-gradient(135deg,rgba(0,120,255,0.25),rgba(19,19,19,0.95))">
+          <span class="material-symbols-outlined" style="font-size:4rem;color:#0078ff;opacity:0.8">sports_soccer</span>
+        </div>
+        <div style="padding:2rem">
+          <div style="display:flex;gap:0.75rem;flex-wrap:wrap;margin-bottom:0.75rem;align-items:center">
+            <span class="tag live">Registration Open</span>
+            <span style="color:var(--on-surface-variant);font-size:0.8rem;font-weight:600">FC 25</span>
+          </div>
+          <h3 class="font-headline" style="font-size:1.4rem;font-weight:700;text-transform:uppercase;margin-bottom:0.6rem">FC 25 1v1 Championship</h3>
+          <p style="color:var(--on-surface-variant);font-size:0.9rem;line-height:1.6;margin-bottom:1.25rem">Solo competition for Tunisia's best FC 25 players. Group stage → knockout → grand final on PS5. Top 8 players qualify for the North Africa Open FC 25 bracket.</p>
+          <div style="display:flex;gap:2rem;flex-wrap:wrap;margin-bottom:1.25rem">
+            <div><p style="color:var(--on-surface-variant);font-size:0.7rem;text-transform:uppercase;letter-spacing:0.1em">Date</p><p style="font-weight:600;font-size:0.9rem;margin-top:0.2rem">Nov 16, 2024</p></div>
+            <div><p style="color:var(--on-surface-variant);font-size:0.7rem;text-transform:uppercase;letter-spacing:0.1em">Venue</p><p style="font-weight:600;font-size:0.9rem;margin-top:0.2rem">Magnavox HQ, Sfax</p></div>
+            <div><p style="color:var(--on-surface-variant);font-size:0.7rem;text-transform:uppercase;letter-spacing:0.1em">Entry</p><p style="font-weight:600;font-size:0.9rem;margin-top:0.2rem">25 TND</p></div>
+            <div><p style="color:var(--on-surface-variant);font-size:0.7rem;text-transform:uppercase;letter-spacing:0.1em">Prize</p><p style="font-weight:600;font-size:0.9rem;color:#ffb4a8;margin-top:0.2rem">1,500 TND</p></div>
+          </div>
+          <a href="#" class="btn-primary" style="padding:0.6rem 1.4rem;font-size:0.7rem">Register Now</a>
+        </div>
+      </div>
+
+      <!-- Tekken 8 -->
+      <div class="event-card-big reveal">
+        <div class="event-card-thumb" style="background:linear-gradient(135deg,rgba(255,140,0,0.25),rgba(19,19,19,0.95))">
+          <span class="material-symbols-outlined" style="font-size:4rem;color:#ff8c00;opacity:0.8">sports_mma</span>
+        </div>
+        <div style="padding:2rem">
+          <div style="display:flex;gap:0.75rem;flex-wrap:wrap;margin-bottom:0.75rem;align-items:center">
+            <span class="tag upcoming">Coming Soon</span>
+            <span style="color:var(--on-surface-variant);font-size:0.8rem;font-weight:600">Tekken 8</span>
+          </div>
+          <h3 class="font-headline" style="font-size:1.4rem;font-weight:700;text-transform:uppercase;margin-bottom:0.6rem">Iron Fist Tunisia — Tekken 8 Open</h3>
+          <p style="color:var(--on-surface-variant);font-size:0.9rem;line-height:1.6;margin-bottom:1.25rem">Tunisia's first dedicated Tekken 8 bracket. Double-elimination format on PS5. Open to all skill levels — beginner brackets available. Side tournaments for Street Fighter 6 and MK1.</p>
+          <div style="display:flex;gap:2rem;flex-wrap:wrap;margin-bottom:1.25rem">
+            <div><p style="color:var(--on-surface-variant);font-size:0.7rem;text-transform:uppercase;letter-spacing:0.1em">Date</p><p style="font-weight:600;font-size:0.9rem;margin-top:0.2rem">Dec 7, 2024</p></div>
+            <div><p style="color:var(--on-surface-variant);font-size:0.7rem;text-transform:uppercase;letter-spacing:0.1em">Venue</p><p style="font-weight:600;font-size:0.9rem;margin-top:0.2rem">LAN Hub Sousse</p></div>
+            <div><p style="color:var(--on-surface-variant);font-size:0.7rem;text-transform:uppercase;letter-spacing:0.1em">Entry</p><p style="font-weight:600;font-size:0.9rem;margin-top:0.2rem">20 TND</p></div>
+            <div><p style="color:var(--on-surface-variant);font-size:0.7rem;text-transform:uppercase;letter-spacing:0.1em">Prize</p><p style="font-weight:600;font-size:0.9rem;color:#ffb4a8;margin-top:0.2rem">1,000 TND</p></div>
+          </div>
+          <a href="#" class="btn-outline" style="padding:0.6rem 1.4rem;font-size:0.7rem">Get Notified</a>
+        </div>
+      </div>
+
+      <!-- PUBG Mobile -->
+      <div class="event-card-big reveal">
+        <div class="event-card-thumb" style="background:linear-gradient(135deg,rgba(255,200,0,0.2),rgba(19,19,19,0.95))">
+          <span class="material-symbols-outlined" style="font-size:4rem;color:#ffc800;opacity:0.8">military_tech</span>
+        </div>
+        <div style="padding:2rem">
+          <div style="display:flex;gap:0.75rem;flex-wrap:wrap;margin-bottom:0.75rem;align-items:center">
+            <span class="tag live">Registration Open</span>
+            <span class="tag free">Free Entry</span>
+            <span style="color:var(--on-surface-variant);font-size:0.8rem;font-weight:600">PUBG Mobile</span>
+          </div>
+          <h3 class="font-headline" style="font-size:1.4rem;font-weight:700;text-transform:uppercase;margin-bottom:0.6rem">PUBG Mobile Squads Invitational</h3>
+          <p style="color:var(--on-surface-variant);font-size:0.9rem;line-height:1.6;margin-bottom:1.25rem">Custom-lobby PUBG Mobile tournament. 16 squads compete across 6 matches scored on placement and kills. Played remotely with screen-share verification. Highlight clips on Magnavox social.</p>
+          <div style="display:flex;gap:2rem;flex-wrap:wrap;margin-bottom:1.25rem">
+            <div><p style="color:var(--on-surface-variant);font-size:0.7rem;text-transform:uppercase;letter-spacing:0.1em">Date</p><p style="font-weight:600;font-size:0.9rem;margin-top:0.2rem">Nov 23, 2024</p></div>
+            <div><p style="color:var(--on-surface-variant);font-size:0.7rem;text-transform:uppercase;letter-spacing:0.1em">Format</p><p style="font-weight:600;font-size:0.9rem;margin-top:0.2rem">Online · 16 Squads</p></div>
+            <div><p style="color:var(--on-surface-variant);font-size:0.7rem;text-transform:uppercase;letter-spacing:0.1em">Entry</p><p style="font-weight:600;font-size:0.9rem;color:#90ee90;margin-top:0.2rem">Free</p></div>
+            <div><p style="color:var(--on-surface-variant);font-size:0.7rem;text-transform:uppercase;letter-spacing:0.1em">Prize</p><p style="font-weight:600;font-size:0.9rem;color:#ffb4a8;margin-top:0.2rem">800 TND + UC</p></div>
+          </div>
+          <a href="#" class="btn-primary" style="padding:0.6rem 1.4rem;font-size:0.7rem">Register Squad</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- HOST CTA -->
+<section style="background:#0e0e0e">
+  <div class="container" style="text-align:center">
+    <div class="reveal" style="border:1px solid rgba(190,0,0,0.2);border-radius:1.5rem;padding:4rem;background:radial-gradient(ellipse at center,rgba(190,0,0,0.08) 0%,transparent 70%)">
+      <span class="section-label">Partner With Us</span>
+      <h2 class="section-title" style="margin-bottom:1rem">HOST YOUR <span class="accent">EVENT</span></h2>
+      <p style="color:var(--on-surface-variant);max-width:480px;margin:0 auto 2.5rem;font-size:1rem;line-height:1.7">
+        Got a gaming event idea? We provide venue, production, promotion, and community reach to make it happen across Tunisia.
+      </p>
+      <a href="#" class="btn-primary">Submit a Proposal</a>
+    </div>
+  </div>
+</section>
+
+<div id="footer-placeholder"></div>
+<div id="mobile-nav-placeholder"></div>
+
+<script src="js/nav.js"></script>
+<script src="js/main.js"></script>
+<script>
+  injectNav('events');
+  function updateCountdown() {
+    const diff = new Date('2024-12-20T09:00:00') - new Date();
+    if (diff <= 0) { ['cd-days','cd-hours','cd-mins','cd-secs'].forEach(id => document.getElementById(id).textContent='00'); return; }
+    document.getElementById('cd-days').textContent  = String(Math.floor(diff/86400000)).padStart(2,'0');
+    document.getElementById('cd-hours').textContent = String(Math.floor((diff%86400000)/3600000)).padStart(2,'0');
+    document.getElementById('cd-mins').textContent  = String(Math.floor((diff%3600000)/60000)).padStart(2,'0');
+    document.getElementById('cd-secs').textContent  = String(Math.floor((diff%60000)/1000)).padStart(2,'0');
+  }
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+</script>
+</body>
+</html>
