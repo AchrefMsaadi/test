@@ -42,126 +42,260 @@
 }
 </style>
 
-<!-- MAGNAVOX PULSE (AI) -->
+<!-- AI SKILL PROGRESSION -->
 <section style="background:#0e0e0e">
   <div class="container">
+
+    <!-- Header row -->
     <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:2rem;margin-bottom:3rem">
       <div class="reveal">
-        <span class="section-label">AI Engine</span>
-        <h2 class="section-title">MAGNAVOX <span class="accent">PULSE</span></h2>
+        <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:0.75rem">
+          <div style="width:32px;height:32px;background:linear-gradient(135deg,#be0000,#7a0000);border-radius:0.4rem;display:flex;align-items:center;justify-content:center">
+            <span class="material-symbols-outlined" style="color:white;font-size:1rem">insights</span>
+          </div>
+          <span class="section-label" style="margin:0">AI-Powered</span>
+        </div>
+        <h2 class="section-title">SKILL <span class="accent">PROGRESSION</span><br/>SYSTEM</h2>
+        <p style="color:var(--on-surface-variant);max-width:440px;font-size:0.95rem;line-height:1.7;margin-top:1rem">
+          Every coaching session feeds your personal dashboard. Track rank, stats, and tournament history — then let the AI tell you exactly what to work on next.
+        </p>
       </div>
-      <div class="reveal glass-panel" style="border:1px solid rgba(190,0,0,0.2);border-radius:1rem;padding:1.5rem 2rem;display:flex;align-items:center;gap:1.5rem">
-        <div style="width:48px;height:48px;border-radius:50%;background:#be0000;display:flex;align-items:center;justify-content:center;animation:pulse-red 2s infinite">
-          <span class="material-symbols-outlined" style="color:white;font-size:1.4rem">insights</span>
+      <div class="reveal" style="display:flex;flex-direction:column;gap:1.5rem;min-width:260px">
+        <div style="background:var(--surface-high);border:1px solid rgba(190,0,0,0.2);border-radius:1rem;padding:1.5rem;display:flex;align-items:center;gap:1rem">
+          <div style="width:44px;height:44px;border-radius:50%;background:#be0000;display:flex;align-items:center;justify-content:center;animation:pulse-red 2s infinite;flex-shrink:0">
+            <span class="material-symbols-outlined" style="color:white;font-size:1.2rem">trending_up</span>
+          </div>
+          <div>
+            <p class="section-label" style="margin-bottom:0.2rem">Live Update</p>
+            <p style="font-weight:700;font-size:0.95rem">+2 rank divisions since joining</p>
+          </div>
+        </div>
+        <div style="background:var(--surface-high);border:1px solid rgba(93,63,59,0.2);border-radius:1rem;padding:1.5rem;display:flex;align-items:center;gap:1rem">
+          <div style="width:44px;height:44px;border-radius:50%;background:rgba(190,0,0,0.15);border:1px solid rgba(190,0,0,0.3);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+            <span class="material-symbols-outlined" style="color:#ffb4a8;font-size:1.2rem">route</span>
+          </div>
+          <div>
+            <p class="section-label" style="margin-bottom:0.2rem">AI Suggestion</p>
+            <p style="font-weight:700;font-size:0.9rem">Focus on game sense this week</p>
+          </div>
         </div>
       </div>
+    </div>
+
+    <!-- Mini stat preview -->
+    <div class="reveal" style="background:var(--surface-high);border-radius:1.25rem;border:1px solid rgba(190,0,0,0.15);overflow:hidden">
+      <div style="background:linear-gradient(135deg,#be0000,#7a0000);padding:1.25rem 2rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem">
+        <div style="display:flex;align-items:center;gap:1rem">
+          <span class="material-symbols-outlined" style="color:white;font-size:2rem">account_circle</span>
+          <div>
+            <p class="font-headline" style="font-weight:700;color:white;font-size:1rem;text-transform:uppercase">Your Player Profile</p>
+            <p style="color:rgba(255,255,255,0.65);font-size:0.8rem">Valorant · Gold II · 14 sessions completed</p>
+          </div>
+        </div>
+        <a href="coaching.html" class="btn-primary" style="background:rgba(0,0,0,0.3);border:1px solid rgba(255,255,255,0.25);padding:0.5rem 1.25rem;font-size:0.7rem">View Full Dashboard →</a>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(5,1fr);padding:1.75rem 2rem;gap:1rem">
+        <div>
+          <div style="display:flex;justify-content:space-between;font-size:0.8rem;margin-bottom:0.4rem"><span style="color:var(--on-surface-variant)">Aim</span><span style="color:#ffb4a8;font-weight:700">72%</span></div>
+          <div class="progress-bar"><div class="progress-fill" style="width:72%"></div></div>
+        </div>
+        <div>
+          <div style="display:flex;justify-content:space-between;font-size:0.8rem;margin-bottom:0.4rem"><span style="color:var(--on-surface-variant)">Game Sense</span><span style="color:#ffb4a8;font-weight:700">58%</span></div>
+          <div class="progress-bar"><div class="progress-fill" style="width:58%"></div></div>
+        </div>
+        <div>
+          <div style="display:flex;justify-content:space-between;font-size:0.8rem;margin-bottom:0.4rem"><span style="color:var(--on-surface-variant)">Comms</span><span style="color:#ffb4a8;font-weight:700">80%</span></div>
+          <div class="progress-bar"><div class="progress-fill" style="width:80%"></div></div>
+        </div>
+        <div>
+          <div style="display:flex;justify-content:space-between;font-size:0.8rem;margin-bottom:0.4rem"><span style="color:var(--on-surface-variant)">Mechanical</span><span style="color:#ffb4a8;font-weight:700">65%</span></div>
+          <div class="progress-bar"><div class="progress-fill" style="width:65%"></div></div>
+        </div>
+        <div>
+          <div style="display:flex;justify-content:space-between;font-size:0.8rem;margin-bottom:0.4rem"><span style="color:var(--on-surface-variant)">Mental</span><span style="color:#ffb4a8;font-weight:700">50%</span></div>
+          <div class="progress-bar"><div class="progress-fill" style="width:50%"></div></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+<!-- COACHING PREVIEW -->
+<section>
+  <div class="container">
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1.5rem;margin-bottom:2.5rem" class="reveal">
+      <div>
+        <span class="section-label">Professional Coaching</span>
+        <h2 class="section-title">TRAIN WITH <span class="accent">THE BEST</span></h2>
+      </div>
+      <a href="coaching.html" class="btn-outline" style="white-space:nowrap">All Coaches →</a>
     </div>
 
     <div class="grid-3">
-      <!-- Card 1 -->
-      <div class="card reveal" style="padding:2rem">
-        <span class="material-symbols-outlined" style="color:#be0000;font-size:2.5rem;margin-bottom:1.5rem;display:block">code_blocks</span>
-        <h3 class="font-headline" style="font-size:1.3rem;font-weight:700;text-transform:uppercase;margin-bottom:1rem">Unreal Engine 5 Masterclass</h3>
-        <p style="color:var(--on-surface-variant);font-size:0.9rem;margin-bottom:2rem;line-height:1.6">Based on your gaming activity in Competitive FPS titles. High employment potential in Tunis tech hubs.</p>
-        <div style="display:flex;justify-content:space-between;align-items:center">
-          <span class="section-label" style="margin:0">98% Match</span>
-          <span class="material-symbols-outlined" style="color:var(--on-surface-variant)">arrow_forward</span>
+
+      <a href="coaching.html" class="coach-mini reveal">
+        <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1rem">
+          <div style="width:44px;height:44px;background:linear-gradient(135deg,#be0000,#7a0000);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+            <span class="material-symbols-outlined" style="color:white;font-size:1.3rem">person</span>
+          </div>
+          <div>
+            <p class="font-headline" style="font-weight:700;font-size:0.95rem;text-transform:uppercase">Coach Anis B.</p>
+            <p style="color:#ff4655;font-size:0.75rem;font-weight:600">Valorant · Radiant</p>
+          </div>
+          <span class="tag" style="margin-left:auto">60 TND/session</span>
         </div>
-      </div>
-      <!-- Card 2 -->
-      <div class="card reveal" style="padding:2rem">
-        <span class="material-symbols-outlined" style="color:#be0000;font-size:2.5rem;margin-bottom:1.5rem;display:block">strategy</span>
-        <h3 class="font-headline" style="font-size:1.3rem;font-weight:700;text-transform:uppercase;margin-bottom:1rem">Esports Management</h3>
-        <p style="color:var(--on-surface-variant);font-size:0.9rem;margin-bottom:2rem;line-height:1.6">Pulse identifies your leadership traits in team-based play. Leading Tunisian agencies are hiring.</p>
-        <div style="display:flex;justify-content:space-between;align-items:center">
-          <span class="section-label" style="margin:0">92% Match</span>
-          <span class="material-symbols-outlined" style="color:var(--on-surface-variant)">arrow_forward</span>
+        <p style="color:var(--on-surface-variant);font-size:0.85rem;line-height:1.5;margin-bottom:1rem">Duelist mechanics, IGL fundamentals, EMEA Top 200 certified.</p>
+        <div style="display:flex;align-items:center;gap:0.5rem">
+          <span class="material-symbols-outlined" style="color:#be0000;font-size:1rem">gps_fixed</span>
+          <span style="font-size:0.8rem;color:var(--on-surface-variant)">Available this week</span>
         </div>
-      </div>
-      <!-- Card 3 -->
-      <div class="card reveal" style="padding:2rem">
-        <span class="material-symbols-outlined" style="color:#be0000;font-size:2.5rem;margin-bottom:1.5rem;display:block">brush</span>
-        <h3 class="font-headline" style="font-size:1.3rem;font-weight:700;text-transform:uppercase;margin-bottom:1rem">Technical Game Art</h3>
-        <p style="color:var(--on-surface-variant);font-size:0.9rem;margin-bottom:2rem;line-height:1.6">For creative minds looking to bridge the gap between design and development.</p>
-        <div style="display:flex;justify-content:space-between;align-items:center">
-          <span class="section-label" style="margin:0">85% Match</span>
-          <span class="material-symbols-outlined" style="color:var(--on-surface-variant)">arrow_forward</span>
+      </a>
+
+      <a href="coaching.html" class="coach-mini reveal">
+        <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1rem">
+          <div style="width:44px;height:44px;background:linear-gradient(135deg,#8a6d1e,#4a3b0e);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+            <span class="material-symbols-outlined" style="color:#c89b3c;font-size:1.3rem">person</span>
+          </div>
+          <div>
+            <p class="font-headline" style="font-weight:700;font-size:0.95rem;text-transform:uppercase">Coach Sami K.</p>
+            <p style="color:#c89b3c;font-size:0.75rem;font-weight:600">League of Legends · Diamond I</p>
+          </div>
+          <span class="tag" style="margin-left:auto">50 TND/session</span>
         </div>
-      </div>
+        <p style="color:var(--on-surface-variant);font-size:0.85rem;line-height:1.5;margin-bottom:1rem">Wave management, macro play, mid-lane champion pool mastery.</p>
+        <div style="display:flex;align-items:center;gap:0.5rem">
+          <span class="material-symbols-outlined" style="color:#be0000;font-size:1rem">shield</span>
+          <span style="font-size:0.8rem;color:var(--on-surface-variant)">Available this week</span>
+        </div>
+      </a>
+
+      <a href="coaching.html" class="coach-mini reveal">
+        <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1rem">
+          <div style="width:44px;height:44px;background:linear-gradient(135deg,#be5000,#7a2f00);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+            <span class="material-symbols-outlined" style="color:white;font-size:1.3rem">person</span>
+          </div>
+          <div>
+            <p class="font-headline" style="font-weight:700;font-size:0.95rem;text-transform:uppercase">Coach Bilel T.</p>
+            <p style="color:#ff8c00;font-size:0.75rem;font-weight:600">Tekken 8 · Tekken God</p>
+          </div>
+          <span class="tag" style="margin-left:auto">55 TND/session</span>
+        </div>
+        <p style="color:var(--on-surface-variant);font-size:0.85rem;line-height:1.5;margin-bottom:1rem">Frame data, combos, matchup theory. Top 3 Tunisia nationally.</p>
+        <div style="display:flex;align-items:center;gap:0.5rem">
+          <span class="material-symbols-outlined" style="color:#be0000;font-size:1rem">sports_mma</span>
+          <span style="font-size:0.8rem;color:var(--on-surface-variant)">Available this week</span>
+        </div>
+      </a>
+
     </div>
   </div>
-</section>
-
+</section>  
 <!-- ELITE EVENTS (PREVIEW) -->
-<section>
+<section style="background:#0e0e0e">
   <div class="container">
-    <div class="reveal" style="text-align:center;margin-bottom:3rem">
-      <h2 class="section-title">ELITE <span class="accent">EVENTS</span></h2>
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1.5rem;margin-bottom:2.5rem" class="reveal">
+      <div>
+        <span class="section-label">Gaming Events</span>
+        <h2 class="section-title">ELITE <span class="accent">EVENTS</span></h2>
+      </div>
+      <a href="events.html" class="btn-outline" style="white-space:nowrap">All Events →</a>
     </div>
+
+    <!-- Featured: North Africa Open -->
+    <div class="reveal" style="border-radius:1.25rem;overflow:hidden;height:360px;position:relative;background:var(--surface-high);margin-bottom:1.5rem;border:1px solid rgba(190,0,0,0.2)">
+      <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%,rgba(190,0,0,0.3) 0%,rgba(19,19,19,0.95) 70%);z-index:1"></div>
+      <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:0.04;z-index:0">
+        <span class="material-symbols-outlined" style="font-size:20rem">emoji_events</span>
+      </div>
+      <div style="position:absolute;inset:0;padding:3rem;z-index:2;display:flex;flex-direction:column;justify-content:flex-end">
+        <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1rem;flex-wrap:wrap">
+          <span class="tag live">🔴 Registration Open</span>
+          <span style="color:rgba(255,255,255,0.5);font-size:0.8rem">Dec 20–22, 2024 · Tunis Expo Center</span>
+        </div>
+        <h3 class="font-headline" style="font-size:clamp(1.75rem,4vw,2.75rem);font-weight:700;text-transform:uppercase;letter-spacing:-0.02em;margin-bottom:0.75rem">North Africa Open 2024</h3>
+        <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem">
+          <div style="display:flex;gap:1.5rem;flex-wrap:wrap">
+            <span style="color:var(--on-surface-variant);font-size:0.85rem">Valorant · LoL · FC 25</span>
+            <span style="color:#ffb4a8;font-weight:700;font-size:0.85rem">Prize Pool: 25,000 TND</span>
+          </div>
+          <a href="events.html" class="btn-primary" style="padding:0.6rem 1.5rem;font-size:0.7rem">Register Team</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Two smaller events -->
     <div class="grid-2">
-      <div class="reveal" style="border-radius:1rem;overflow:hidden;height:400px;position:relative;background:var(--surface-high)">
-        <div style="position:absolute;inset:0;background:linear-gradient(to top,#131313 0%,rgba(19,19,19,0.3) 50%,transparent 100%);z-index:1"></div>
-        <div style="position:absolute;bottom:0;left:0;right:0;padding:2rem;z-index:2">
-          <span class="section-label">Live in Tunis</span>
-          <h3 class="font-headline" style="font-size:2rem;font-weight:700;text-transform:uppercase;margin-bottom:0.75rem">North Africa Open</h3>
-          <p style="color:var(--on-surface-variant);margin-bottom:1.5rem;font-size:0.9rem">The ultimate showdown for competitive Valorant and League of Legends squads.</p>
-          <a href="events.html" class="btn-primary" style="padding:0.6rem 1.5rem;font-size:0.7rem">View Details</a>
+      <a href="events.html" class="event-mini reveal">
+        <div style="width:100px;background:linear-gradient(135deg,rgba(255,70,85,0.25),rgba(19,19,19,0.95));display:flex;align-items:center;justify-content:center;flex-shrink:0">
+          <span class="material-symbols-outlined" style="font-size:2.5rem;color:#ff4655;opacity:0.8">gps_fixed</span>
         </div>
-        <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(190,0,0,0.15),transparent)"></div>
-        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:0.05">
-          <span class="material-symbols-outlined" style="font-size:12rem">sports_esports</span>
+        <div style="padding:1.25rem">
+          <span class="tag" style="margin-bottom:0.6rem;display:inline-block">Valorant</span>
+          <h4 class="font-headline" style="font-weight:700;font-size:0.95rem;text-transform:uppercase;margin-bottom:0.4rem">Valorant Community Cup</h4>
+          <p style="color:var(--on-surface-variant);font-size:0.82rem;margin-bottom:0.6rem">Open 5v5 · All ranks · Nov 9, 2024</p>
+          <p style="color:#ffb4a8;font-size:0.82rem;font-weight:700">Prize: 2,000 TND · Entry: 30 TND/team</p>
         </div>
-      </div>
-      <div style="display:grid;grid-template-rows:1fr 1fr;gap:1.5rem">
-        <div class="card reveal" style="display:flex;overflow:hidden">
-          <div style="width:120px;background:linear-gradient(135deg,rgba(190,0,0,0.3),rgba(19,19,19,0.8));flex-shrink:0;display:flex;align-items:center;justify-content:center">
-            <span class="material-symbols-outlined" style="font-size:3rem;color:#be0000;opacity:0.7">groups</span>
-          </div>
-          <div style="padding:1.5rem">
-            <h4 class="font-headline" style="font-weight:700;font-size:1rem;text-transform:uppercase;margin-bottom:0.5rem">Pro-Am Networking Night</h4>
-            <p style="color:var(--on-surface-variant);font-size:0.85rem;margin-bottom:0.75rem">Meet industry veterans and level up your contacts list.</p>
-            <span class="section-label" style="margin:0">October 15, 2024</span>
-          </div>
+      </a>
+      <a href="events.html" class="event-mini reveal">
+        <div style="width:100px;background:linear-gradient(135deg,rgba(255,200,0,0.2),rgba(19,19,19,0.95));display:flex;align-items:center;justify-content:center;flex-shrink:0">
+          <span class="material-symbols-outlined" style="font-size:2.5rem;color:#ffc800;opacity:0.8">military_tech</span>
         </div>
-        <div class="card reveal" style="display:flex;overflow:hidden">
-          <div style="width:120px;background:linear-gradient(135deg,rgba(190,0,0,0.3),rgba(19,19,19,0.8));flex-shrink:0;display:flex;align-items:center;justify-content:center">
-            <span class="material-symbols-outlined" style="font-size:3rem;color:#be0000;opacity:0.7">controller_gen</span>
+        <div style="padding:1.25rem">
+          <div style="display:flex;gap:0.5rem;margin-bottom:0.6rem">
+            <span class="tag">PUBG Mobile</span>
+            <span class="tag free">Free</span>
           </div>
-          <div style="padding:1.5rem">
-            <h4 class="font-headline" style="font-weight:700;font-size:1rem;text-transform:uppercase;margin-bottom:0.5rem">Magnavox Pulse Jam</h4>
-            <p style="color:var(--on-surface-variant);font-size:0.85rem;margin-bottom:0.75rem">48-hour game jam focused on AI integration in indie titles.</p>
-            <span class="section-label" style="margin:0">November 02, 2024</span>
-          </div>
+          <h4 class="font-headline" style="font-weight:700;font-size:0.95rem;text-transform:uppercase;margin-bottom:0.4rem">PUBG Mobile Squads Invitational</h4>
+          <p style="color:var(--on-surface-variant);font-size:0.82rem;margin-bottom:0.6rem">16 squads · Online · Nov 23, 2024</p>
+          <p style="color:#ffb4a8;font-size:0.82rem;font-weight:700">Prize: 800 TND + UC · Free entry</p>
         </div>
-      </div>
+      </a>
     </div>
-    <div style="text-align:center;margin-top:2.5rem">
-      <a href="events.html" class="btn-outline">See All Events</a>
-    </div>
+
   </div>
 </section>
 
 <!-- IMPACT STATS -->
-<section style="background:#0e0e0e">
+<section>
   <div class="container">
     <div style="border-left:4px solid #be0000;padding-left:2rem">
       <h2 class="section-title reveal">THE <span class="accent">IMPACT</span></h2>
       <div class="grid-3" style="margin-top:2rem">
+
         <div class="reveal">
-          <span class="font-headline" style="font-size:5rem;font-weight:900;color:rgba(229,226,225,0.08);font-style:italic;display:block">500+</span>
-          <h4 class="font-headline" style="font-weight:700;font-size:1.3rem;text-transform:uppercase;margin-bottom:0.75rem">Youth Employed</h4>
-          <p style="color:var(--on-surface-variant);font-size:0.9rem;line-height:1.6">Bridging the gap between the gaming basement and the corporate boardroom across Tunisia.</p>
+          <span class="font-headline" style="font-size:5rem;font-weight:900;color:rgba(229,226,225,0.07);font-style:italic;display:block;line-height:1">500+</span>
+          <h4 class="font-headline" style="font-weight:700;font-size:1.2rem;text-transform:uppercase;margin-bottom:0.6rem">Players Coached</h4>
+          <p style="color:var(--on-surface-variant);font-size:0.9rem;line-height:1.6">From casual gamers to tournament competitors — every player has a pathway.</p>
         </div>
+
         <div class="reveal">
-          <span class="font-headline" style="font-size:5rem;font-weight:900;color:rgba(229,226,225,0.08);font-style:italic;display:block">12k</span>
-          <h4 class="font-headline" style="font-weight:700;font-size:1.3rem;text-transform:uppercase;margin-bottom:0.75rem">Trained Skills</h4>
-          <p style="color:var(--on-surface-variant);font-size:0.9rem;line-height:1.6">Micro-credentials and certifications that matter in the new digital economy.</p>
+          <span class="font-headline" style="font-size:5rem;font-weight:900;color:rgba(229,226,225,0.07);font-style:italic;display:block;line-height:1">20+</span>
+          <h4 class="font-headline" style="font-weight:700;font-size:1.2rem;text-transform:uppercase;margin-bottom:0.6rem">Events Hosted</h4>
+          <p style="color:var(--on-surface-variant);font-size:0.9rem;line-height:1.6">Tournaments, community nights, and game jams across Tunis, Sfax, and Sousse.</p>
         </div>
+
         <div class="reveal">
-          <span class="font-headline" style="font-size:5rem;font-weight:900;color:rgba(190,0,0,0.12);font-style:italic;display:block">AI</span>
-          <h4 class="font-headline" style="font-weight:700;font-size:1.3rem;text-transform:uppercase;margin-bottom:0.75rem">Driven Growth</h4>
-          <p style="color:var(--on-surface-variant);font-size:0.9rem;line-height:1.6">Magnavox Pulse has predicted and paved over 3,000 personalized career trajectories.</p>
+          <span class="font-headline" style="font-size:5rem;font-weight:900;color:rgba(190,0,0,0.1);font-style:italic;display:block;line-height:1">AI</span>
+          <h4 class="font-headline" style="font-weight:700;font-size:1.2rem;text-transform:uppercase;margin-bottom:0.6rem">Driven Progression</h4>
+          <p style="color:var(--on-surface-variant);font-size:0.9rem;line-height:1.6">The Skill Progression System has mapped and accelerated 3,000+ personalized player journeys.</p>
         </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+  <!-- FINAL CTA -->
+  <section style="background:#0e0e0e">
+  <div class="container" style="text-align:center">
+    <div class="reveal" style="border:1px solid rgba(190,0,0,0.2);border-radius:1.5rem;padding:4rem;background:radial-gradient(ellipse at center,rgba(190,0,0,0.08) 0%,transparent 70%)">
+      <span class="section-label">Start Today</span>
+      <h2 class="section-title" style="margin-bottom:1rem">READY TO <span class="accent">COMPETE?</span></h2>
+      <p style="color:var(--on-surface-variant);max-width:460px;margin:0 auto 2.5rem;font-size:1rem;line-height:1.7">
+        Book your first coaching session, register for a tournament, or just show up. The kinetic path starts here.
+      </p>
+      <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+        <a href="coaching.html" class="btn-primary">Book a Session</a>
+        <a href="events.html" class="btn-outline">Browse Events</a>
       </div>
     </div>
   </div>
